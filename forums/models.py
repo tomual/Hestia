@@ -18,7 +18,7 @@ class Thread(models.Model):
 class Response(models.Model):
     thread = models.ForeignKey(Thread, on_delete=models.CASCADE)
     response_content = models.CharField(max_length=200)
-    reply_date = models.DateTimeField('date posted')
+    response_date = models.DateTimeField('date posted')
 
     def __str__(self):
     	return self.response_content[:10]

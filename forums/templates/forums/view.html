@@ -1,2 +1,11 @@
 <h1>{{ thread.thread_title }}</h1>
 <p>{{ thread.thread_content }}</p>
+
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+<form action="/forums/{{ thread.id }}/respond/" method="post">
+{% csrf_token %}
+<label for="response_content">Response</label><br>
+<textarea name="response_content"></textarea>
+<input type="submit" value="Reply" />
+</form>
