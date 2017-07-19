@@ -1,6 +1,12 @@
 <h1>{{ thread.thread_title }}</h1>
 <p>{{ thread.thread_content }}</p>
 
+<ul>
+{% for response in thread.response_set.all %}
+    <li>{{ response.response_content }}</li>
+{% endfor %}
+</ul>
+
 {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
 
 <form action="/forums/{{ thread.id }}/respond/" method="post">
