@@ -12,7 +12,8 @@ class Thread(models.Model):
     	return self.thread_title
 
     def was_posted_recently(self):
-    	return self.thread_date >= timezone.now() - datetime.timedelta(days = 1)
+    	now = timezone.now()
+    	return now - datetime.timedelta(days=1) <= self.thread_date <= now
 
 
 class Response(models.Model):
