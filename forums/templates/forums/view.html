@@ -1,4 +1,8 @@
-<h1>{{ thread.thread_title }}</h1>
+{% extends "forums/base.html" %}
+
+{% block content %}
+
+<h1>{% block title %}{{ thread.thread_title }}{% endblock %}</h1>
 <p>{{ thread.thread_content }}</p>
 
 <ul>
@@ -15,3 +19,5 @@
 <textarea name="response_content"></textarea>
 <input type="submit" value="Reply" />
 </form>
+
+{% endblock %}

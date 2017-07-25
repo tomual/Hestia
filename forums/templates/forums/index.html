@@ -1,9 +1,15 @@
-{% if latest_thread_list %}
-    <ul>
-    {% for thread in latest_thread_list %}
-        <li><a href="/forums/{{ thread.id }}/">{{ thread.thread_title }}</a></li>
-    {% endfor %}
-    </ul>
-{% else %}
-    <p>No threads</p>
-{% endif %}
+{% extends "forums/base.html" %}
+
+{% block content %}
+
+<h1>{% block title %}Forums{% endblock %}</h1>
+	{% if latest_thread_list %}
+	    <ul>
+	    {% for thread in latest_thread_list %}
+	        <li><a href="/forums/{{ thread.id }}/">{{ thread.thread_title }}</a></li>
+	    {% endfor %}
+	    </ul>
+	{% else %}
+	    <p>No threads</p>
+	{% endif %}
+{% endblock %}
