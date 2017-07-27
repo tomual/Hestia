@@ -15,6 +15,10 @@ class Thread(models.Model):
     	now = timezone.now()
     	return now - datetime.timedelta(days=1) <= self.thread_date <= now
 
+    was_posted_recently.thread_date  = True
+    was_posted_recently.boolean = True
+    was_posted_recently.short_description = 'Published recently?'
+
 
 class Response(models.Model):
     thread = models.ForeignKey(Thread, on_delete=models.CASCADE)
