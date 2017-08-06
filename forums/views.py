@@ -5,6 +5,7 @@ from django.views import generic
 from datetime import date
 
 from .models import Thread, Response
+from django.contrib.auth.models import User
 
 class IndexView(generic.ListView):
     template_name = 'forums/index.html'
@@ -19,6 +20,9 @@ class ViewView(generic.DetailView):
 
 def respond(request, thread_id):
     thread = get_object_or_404(Thread, pk=thread_id)
-    response = thread.response_set.create(response_content = request.POST.get('response_content'), response_date = date.today())
+    if request.user.is_authenticated():
+        user = request.user
+    response = thread.response_set.create(response_content = request.POST.get('response_content'), response_date = date.today(), author = user)
+
     response.save()
     return HttpResponseRedirect('/forums/' + thread_id)
