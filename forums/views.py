@@ -3,6 +3,7 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.template import loader
 from django.views import generic
 from datetime import date
+from django.utils import timezone
 
 from .models import Thread, Response
 from django.contrib.auth.models import User
@@ -26,3 +27,18 @@ def respond(request, thread_id):
 
     response.save()
     return HttpResponseRedirect('/forums/' + thread_id)
+
+def new(request):
+    if request.method == "POST":
+        thread_title = request.POST['thread_title']
+        thread_content = request.POST['thread_content']
+        thread_date = timezone.now()
+        thread = Thread(thread_title=thread_title, thread_content=thread_content, thread_date=thread_date)
+        thread.save()
+        if thread is not None:
+            return HttpResponseRedirect('/forums/' + str(thread.id))
+        else:
+            messages.error(request, 'Bad.')
+        return render(request, 'forums/new.html')
+    else:
+        return render(request, 'forums/new.html')

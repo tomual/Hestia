@@ -1,0 +1,27 @@
+{% extends "forums/base.html" %}
+
+{% block content %}
+
+    <h1>{% block title %}New Thread{% endblock %}</h1>
+
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}">
+                {{ message|safe }}
+            </div>
+        {% endfor %}
+    {% endif %}
+    <form method="POST">
+        {% csrf_token %}
+        <p>
+            <label>Thread Title</label>
+            <input type="text" name="thread_title">
+        </p>
+        <p>
+            <label>Thread Message</label>
+            <input type="text" name="thread_content">
+        </p>
+        <button type="submit">Post</button>
+    </form>
+
+{% endblock %}
