@@ -9,6 +9,7 @@ class Thread(models.Model):
     thread_title = models.CharField(max_length=200)
     thread_content = models.CharField(max_length=200)
     thread_date = models.DateTimeField('date posted')
+    author = models.ForeignKey(settings.AUTH_USER_MODEL, null=True)
 
     def __str__(self):
     	return self.thread_title

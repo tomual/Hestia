@@ -33,7 +33,9 @@ def new(request):
         thread_title = request.POST['thread_title']
         thread_content = request.POST['thread_content']
         thread_date = timezone.now()
-        thread = Thread(thread_title=thread_title, thread_content=thread_content, thread_date=thread_date)
+        if request.user.is_authenticated():
+            user = request.user
+        thread = Thread(thread_title=thread_title, thread_content=thread_content, thread_date=thread_date, author=user)
         thread.save()
         if thread is not None:
             return HttpResponseRedirect('/forums/' + str(thread.id))
