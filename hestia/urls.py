@@ -16,11 +16,12 @@ Including another URLconf
 from django.conf.urls import include, url
 from django.contrib import auth
 from django.contrib import admin
+from . import views
 
 
 urlpatterns = [
+    url(r'^$', views.home, name='home'),
     url(r'^forums/', include('forums.urls')),
     url(r'^users/', include('users.urls')),
     url(r'^admin/', admin.site.urls),
-    url('^', include('django.contrib.auth.urls'))
 ]
