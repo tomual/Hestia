@@ -1,13 +1,133 @@
-@import url('https://fonts.googleapis.com/css?family=PT+Sans:400,700');
 
+* { margin:0; padding:0;}
+html, body { height: 100%; }
 body {
-	background: #37474F;
+	font-family: 'Open Sans', sans-serif;
+	background: #2F3838;
 	color: #FFF;
-	font-family: 'PT Sans', sans-serif;
+	line-height: 1.5em;
 }
 
 a {
 	color: #FFF;
+}
+
+h1 {
+	font-family: 'Montserrat', sans-serif;
+	font-size: 22px;
+	text-transform: uppercase;
+	letter-spacing: 3px;
+	font-weight: normal;
+	margin-bottom: 40px;
+}
+
+li {
+	list-style-type: none;
+	line-height: 1.7em;
+}
+
+.wrapper {
+	height: 100%;
+	display: table;
+	width: 100%;
+}
+
+.header {
+	font-family: 'Montserrat', sans-serif;
+	display: table-row;
+	height: 1px;
+	background: #23282A;
+}
+
+.title {
+	padding: 20px;
+	padding-left: 40px;
+	text-transform: uppercase;
+	letter-spacing: 8px;
+	font-weight: bold;
+}
+
+.main {
+	height: 100%;
+	display: table;
+	width: 100%;
+	background: #262E30;
+}
+
+.main .sidebar {
+	width: 200px;
+	background: #22292B;
+}
+
+.hero {
+	height: 200px;
+	display: table;
+	width: 100%;
+	background: #2B3133;
+}
+
+.hero .sidebar {
+	width: 200px;
+	background: rgba(34, 41, 43, 0.5);
+}
+
+.box {
+	display: table-cell;
+	padding: 40px;
+}
+
+.content {
+	padding: 40px 80px;
+}
+
+.footer {
+	display: table-row;
+	height:1px;
+	background: #444;
+	color: #444;
+}
+
+nav li {
+	font-size: 14px;
+	list-style-type: none;
+	line-height: 3em;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+}
+
+nav li a {
 	text-decoration: none;
-	border-bottom: 1px solid #FFF;
+	color: #FFF;
+	padding: 5px 0;
+}
+
+nav li a:hover {
+	border-bottom: 2px solid #8CFEE6;
+}
+
+.auth {
+	vertical-align: bottom;
+	font-size: 10px;
+}
+
+.auth span{
+	opacity: 0.7;
+	padding: 0 5px;
+}
+
+.auth .name {
+	font-size: 12px;
+}
+
+.auth a {
+	text-decoration: none;
+	text-transform: uppercase;
+	color: #FFF;
+	border-bottom: 1px solid #8CFEE6;
+	letter-spacing: 1px;
+	opacity: 0.7;
+}
+
+.auth a:hover {
+	opacity: 1;
 }

@@ -2,6 +2,7 @@
 
 {% block content %}
 
+    <h1>{% block title %}Log In{% endblock %}</h1>
     {% if messages %}
         {% for message in messages %}
             <div class="alert alert-{{ message.tags }}">

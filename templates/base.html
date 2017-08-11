@@ -5,24 +5,52 @@
 <head>
 	<title>{% block title %}{% endblock %} | Hestia</title>
 	<link rel="stylesheet" type="text/css" href="{% static 'forums/style.css' %}" />
+	<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700|Open+Sans|Lora" rel="stylesheet">
+
 </head>
 <body>
+<div class="wrapper">
+	<div class="header"><div class="title">Hestia</div></div>
+	<div class="hero">
+		<div class="box sidebar">
+		</div>
+		<div class="box content">
+		</div>
+		<div class="box sidebar auth">
+		{% if user.is_authenticated %}
+			<div class="name">Hello, {{ user.username }}</div>
+			<a href="/users/logout">Log out</a>
+		{% else %}
+			<a href="/users/login">Log in</a> <span>or</span> <a href="/users/register">Register</a>
+		{% endif %}
 
-<header>Hestia</header>
+		
+		</div>
+	</div>
+	<div class="main">
+		<div class="box sidebar">	
+			<nav>
+			<ul>
+			<li><a href="/home">Home</a></li>
+			<li><a href="/forums">Forums</a></li>
+			<li><a href="/users">Users</a></li>
+			<li><a href="/groups">Groups</a></li>
+			<li><a href="/about">About</a></li>
+			</ul>
+			</nav>
+		</div>
+		<div class="box content">
+			{% block content %}{% endblock %}
+		</div>
+		<div class="box sidebar">
+			Right stuff
+		</div>
+	</div>
+	<div class="footer">FOOTER</div>
+</div>
 
-<nav>
-	<ul>
-		<li><a href="/home">Home</a></li>
-		<li><a href="/forums">Forums</a></li>
-		<li><a href="/users">Users</a></li>
-		<li><a href="/groups">Groups</a></li>
-		<li><a href="/about">About</a></li>
-	</ul>
-</nav>
 
-{% block content %}{% endblock %}
 
-<footer>Footer</footer>
 
 </body>
 </html>
