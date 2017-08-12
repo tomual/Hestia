@@ -4,7 +4,8 @@ from django.contrib.auth.models import Permission, User
 from django.contrib import messages
 
 def index(request):
-    return render(request, 'users/index.html')
+    users = User.objects.all()
+    return render(request, 'users/index.html', {'users':users})
 
 def login_view(request):
     if request.user.is_authenticated:
