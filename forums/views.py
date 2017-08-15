@@ -2,7 +2,7 @@ from django.shortcuts import get_object_or_404, render
 from django.http import HttpResponseRedirect, HttpResponse
 from django.template import loader
 from django.views import generic
-from datetime import date
+from datetime import datetime
 from django.utils import timezone
 
 from .models import Thread, Response
@@ -23,7 +23,7 @@ def respond(request, thread_id):
     thread = get_object_or_404(Thread, pk=thread_id)
     if request.user.is_authenticated():
         user = request.user
-    response = thread.response_set.create(response_content = request.POST.get('response_content'), response_date = date.today(), author = user)
+    response = thread.response_set.create(response_content = request.POST.get('response_content'), response_date = datetime.now(), author = user)
 
     response.save()
     return HttpResponseRedirect('/forums/' + thread_id)

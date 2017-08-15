@@ -2,22 +2,36 @@
 
 {% block content %}
 
-<h1>{% block title %}{{ thread.thread_title }}{% endblock %}</h1>
-<p>{{ thread.thread_content }}</p>
+<div class="thread">
 
-<ul>
-{% for response in thread.response_set.all %}
-    <li>{{ response.response_content }}</li>
-{% endfor %}
-</ul>
+	<div class="first">
+		<h1>{% block title %}{{ thread.thread_title }}{% endblock %}</h1>
+		<div class="info">
+			<div class="name">{{ thread.author }}</div>
+			<div class="time">{{ thread.thread_date }}</div>
+		</div>
+		<p>{{ thread.thread_content }}</p>
+	</div>
+	<div class="responses">
+		{% for response in thread.response_set.all %}
+		<div class="response">
+			<div class="info">
+				<div class="name">{{ response.author }}</div>
+				<div class="time">{{ response.response_date }}</div>
+			</div>
+			<p>{{ response.response_content }}</p>
+		</div>
+		{% endfor %}
+	</div>
+	<div class="respond">
+		{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
 
-{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
-
-<form action="/forums/{{ thread.id }}/respond/" method="post">
-{% csrf_token %}
-<label for="response_content">Response</label><br>
-<textarea name="response_content"></textarea>
-<input type="submit" value="Reply" />
-</form>
-
+		<form action="/forums/{{ thread.id }}/respond/" method="post">
+		{% csrf_token %}
+		<label for="response_content">Response</label><br>
+		<textarea name="response_content"></textarea>
+		<input type="submit" value="Reply" />
+		</form>
+	</div>
+</div>
 {% endblock %}
