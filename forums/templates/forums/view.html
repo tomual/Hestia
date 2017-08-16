@@ -7,7 +7,9 @@
 	<div class="first">
 		<h1>{% block title %}{{ thread.thread_title }}{% endblock %}</h1>
 		<div class="info">
+			<div class="icon"><img src="/{{ thread.author.profile.icon }}"></div>
 			<div class="name">{{ thread.author }}</div>
+			<div class="location">{{ thread.author.profile.location }}</div>
 			<div class="time">{{ thread.thread_date }}</div>
 		</div>
 		<p>{{ thread.thread_content }}</p>
@@ -16,7 +18,9 @@
 		{% for response in thread.response_set.all %}
 		<div class="response">
 			<div class="info">
+				<div class="icon"><img src="/{{ response.author.profile.icon }}"></div>
 				<div class="name">{{ response.author }}</div>
+				<div class="location">{{ response.author.profile.location }}</div>
 				<div class="time">{{ response.response_date }}</div>
 			</div>
 			<p>{{ response.response_content }}</p>
