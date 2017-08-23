@@ -131,3 +131,39 @@ nav li a:hover {
 .auth a:hover {
 	opacity: 1;
 }
+
+.icon img {
+	width: 50px;
+	height: 50px;
+	float: left;
+}
+
+.author {
+	height: 70px;
+}
+
+.author .name, .author .location {
+	display: block;
+	margin-left: 70px;
+}
+
+.author .location {
+	opacity: 0.5;
+}
+
+.response {
+	margin-top: 50px;
+	border-top: 1px solid #2F3838;
+	padding-top: 30px ;
+}
+
+.thread .time {
+	margin-left: 70px;
+	font-size: 12px;
+	opacity: 0.7;
+}
+
+.thread .post {
+	margin-left: 70px;
+	padding-top: 30px;
+}
