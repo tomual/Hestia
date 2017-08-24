@@ -41,3 +41,8 @@ def register_view(request):
         return render(request, 'users/register.html')
     else:
         return render(request, 'users/register.html')
+
+
+def profile(request, username):
+    user = User.objects.get(username=username)
+    return render(request, 'users/profile.html', {'user':user})
