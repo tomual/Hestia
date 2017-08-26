@@ -168,3 +168,38 @@ nav li a:hover {
 	margin-left: 70px;
 	padding-top: 30px;
 }
+
+input, textarea {
+	width: 100%;
+	display: block;
+    background: rgb(58, 71, 74);
+    border: none;
+    color: #FFF;
+    padding: 10px 15px;
+    font-size: 16px;
+    font-family: inherit;
+    margin: 10px 0;
+    box-sizing: border-box;
+}
+
+.primary-button {
+    background: #22afd0;
+    padding: 15px 35px;
+    border: 0;
+    border-radius: 3px;
+    color: #FFF;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+    margin-top: 20px;
+}
+
+label {
+	opacity: 0.5;
+
+}
+
+.respond {
+    border-top: 1px solid rgb(58, 71, 74);
+    margin-top: 50px;
+    padding-top: 50px;
+}
