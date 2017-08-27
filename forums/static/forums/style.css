@@ -195,6 +195,9 @@ input, textarea {
 
 label {
 	opacity: 0.5;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 12px;
 
 }
 
