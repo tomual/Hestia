@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <h1>{% block title %}New Group{% endblock %}</h1>
+
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}">
+                {{ message|safe }}
+            </div>
+        {% endfor %}
+    {% endif %}
+    <form method="POST">
+        {% csrf_token %}
+        <p>
+            <label>Group Name</label>
+            <input type="text" name="name">
+        </p>
+        <p>
+            <label>Group Description</label>
+            <textarea name="description" rows="8"></textarea>
+        </p>
+        <button type="submit" class="primary-button">Create Group</button>
+    </form>
+
+{% endblock %}
