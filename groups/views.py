@@ -5,6 +5,10 @@ from django.utils import timezone
 from .models import Group
 from django.contrib.auth.models import User
 
+def view(request, id):
+    group = Group.objects.get(id=id)
+    return render(request, 'groups/view.html', {'group':group})
+
 def new(request):
     if request.method == "POST":
         name = request.POST['name']

@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="group">
+    <h1>{% block title %}{{ group.name }}{% endblock %}</h1>
+	<div class="icon"><img src="/{{ group.icon }}"></div>
+    <p>Created {{ group.created }}</p>
+    <p>Owned by {{ group.owner.username }}</p>
+    <p>{{ group.description }}</p>
+</div>
+{% endblock %}
