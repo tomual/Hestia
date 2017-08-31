@@ -5,6 +5,10 @@ from django.utils import timezone
 from .models import Group
 from django.contrib.auth.models import User
 
+def index(request):
+    groups = Group.objects.all()
+    return render(request, 'groups/index.html', {'groups':groups})
+
 def view(request, id):
     group = Group.objects.get(id=id)
     return render(request, 'groups/view.html', {'group':group})
