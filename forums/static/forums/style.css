@@ -208,3 +208,28 @@ label {
     margin-top: 50px;
     padding-top: 50px;
 }
+
+li.thread a {
+    font-weight: 600;
+    letter-spacing: 1px;
+    font-family: 'Montserrat', sans-serif;
+    text-decoration: none;
+    margin-right: 10px;
+}
+
+li.thread .preview {
+	opacity: 0.5;
+}
+
+li.thread {
+	margin-bottom: 30px;
+	border: 1px solid rgb(58, 71, 74);
+	padding: 20px 30px;
+	border-radius: 2px;
+}
+
+li.thread .posted, 
+li.thread .author {
+	font-size: 12px;
+	opacity: 0.7;
+} 

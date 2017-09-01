@@ -5,7 +5,7 @@
     <h1>{% block title %}Users{% endblock %}</h1>
     <ul>
     {% for user in users %}
-        <li><a href="/users/profile/{{ user.username }}/">{{ user.username }}</a></li>
+        <li><a href="/users/profile/{{ user.username }}">{{ user.username }}</a></li>
     {% endfor %}
     </ul>
 

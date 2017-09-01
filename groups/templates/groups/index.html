@@ -5,7 +5,7 @@
     <h1>{% block title %}Groups{% endblock %}</h1>
     <ul>
     {% for group in groups %}
-        <li><a href="/groups/{{ group.id }}/">{{ group.name }}</a></li>
+        <li><a href="/groups/{{ group.id }}">{{ group.name }}</a></li>
     {% endfor %}
     </ul>
 

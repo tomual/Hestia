@@ -7,7 +7,13 @@
     {% if latest_thread_list %}
         <ul>
         {% for thread in latest_thread_list %}
-            <li><a href="/forums/{{ thread.id }}/">{{ thread.thread_title }}</a></li>
+            <li class="thread">
+                <a href="/forums/{{ thread.id }}/">{{ thread.thread_title }}</a> 
+                <span class="preview">{{ thread.thread_content|truncatewords_html:10 }}</span>
+                <br>
+                <span class="posted">{{ thread.thread_date|timesince }} ago</span>
+                <span class="author">by {{ thread.author }}</span>
+            </li>
         {% endfor %}
         </ul>
     {% else %}
