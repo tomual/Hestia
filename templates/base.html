@@ -18,7 +18,7 @@
 		</div>
 		<div class="box sidebar auth">
 		{% if user.is_authenticated %}
-			<div class="name">Hello, {{ user.username }}</div>
+			<div class="name">Hello, <a href="/users/profile/{{ user.username }}">{{ user.username }}</a></div>
 			<a href="/users/logout">Log out</a>
 		{% else %}
 			<a href="/users/login">Log in</a> <span>or</span> <a href="/users/register">Register</a>

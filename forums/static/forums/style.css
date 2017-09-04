@@ -112,7 +112,12 @@ nav li a:hover {
 	font-size: 12px;
 }
 
-.auth a {
+.auth .name a {
+	font-weight: bold;
+	text-decoration: none;
+}
+
+.auth > a {
 	text-decoration: none;
 	text-transform: uppercase;
 	color: #FFF;

@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <h1>{% block title %}Edit Profile{% endblock %}</h1>
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}">
+                {{ message|safe }}
+            </div>
+        {% endfor %}
+    {% endif %}
+    <form method="POST">
+        {% csrf_token %}
+
+        <label>Username</label>
+        <input type="text" name="username" value="{{ user.username }}" class="disabled">
+
+        <label>Email</label>
+        <input type="email" name="email" value="{{ user.email }}">
+
+        <label>Location</label>
+        <input type="text" name="location" value="{{ user.profile.location }}">
+
+        <label>Description</label>
+        <textarea name="description">{{ user.profile.description }}</textarea>
+
+<!--         <hr />
+
+        <label>New Password</label>
+        <input type="password" name="password">
+
+        <label>Confirm Password</label>
+        <input type="password" name="password2"> -->
+
+        <button type="submit" class="primary-button">Edit</button>
+    </form>
+
+{% endblock %}

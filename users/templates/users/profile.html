@@ -1,12 +1,20 @@
 {% extends "base.html" %}
 
 {% block content %}
+
 <div class="profile">
-    <h1>{% block title %}{{ user.username }}{% endblock %}</h1>
-	<div class="icon"><img src="/{{ user.profile.icon }}"></div>
-    <p>{{ user.profile.location }}</p>
-    <p>Joined {{ user.date_joined }}</p>
-    <p>Last Login {{ user.last_login }}</p>
-    <p>{{ user.profile.description }}</p>
+    <h1>{% block title %}{{ profile_user.username }}{% endblock %}</h1>
+
+	{% if user.is_authenticated %}
+		{% if user.username == profile_user.username %}
+			<a href="/users/edit" class="button">Edit Profile</a>
+		{% endif %}
+	{% endif %}
+
+	<div class="icon"><img src="/{{ profile_user.profile.icon }}"></div>
+    <p>{{ profile_user.profile.location }}</p>
+    <p>Joined {{ profile_user.date_joined }}</p>
+    <p>Last Login {{ profile_user.last_login }}</p>
+    <p>{{ profile_user.profile.description }}</p>
 </div>
 {% endblock %}

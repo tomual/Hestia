@@ -42,7 +42,18 @@ def register_view(request):
     else:
         return render(request, 'users/register.html')
 
-
 def profile(request, username):
-    user = User.objects.get(username=username)
-    return render(request, 'users/profile.html', {'user':user})
+    profile_user = User.objects.get(username=username)
+    return render(request, 'users/profile.html', {'profile_user':profile_user})
+
+def edit(request):
+    if request.method == "POST":
+        user_edit = User.objects.get(username=request.user.username)
+        user_edit.email = request.POST['email']
+        user_edit.profile.location = request.POST['location']
+        user_edit.profile.description = request.POST['description']
+        user_edit.profile.save()
+        user_edit.save()
+        return render(request, 'users/edit.html')
+    else:
+        return render(request, 'users/edit.html')
