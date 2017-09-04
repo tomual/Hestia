@@ -3,6 +3,7 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.utils import timezone
 
 from .models import Group, Membership
+from .forms import ImageUploader
 from django.contrib.auth.models import User
 
 def index(request):
@@ -11,7 +12,8 @@ def index(request):
 
 def view(request, id):
     group = Group.objects.get(id=id)
-    return render(request, 'groups/view.html', {'group':group})
+    is_owner = group.is_owner(request.user)
+    return render(request, 'groups/view.html', {'group':group, 'is_owner':is_owner})
 
 def new(request):
     if request.method == "POST":
@@ -30,3 +32,19 @@ def new(request):
         return render(request, 'groups/new.html')
     else:
         return render(request, 'groups/new.html')
+
+def edit(request, id):
+    group = Group.objects.get(id=id)
+    if request.method == "POST":
+        group.description = request.POST['description']
+
+        if request.FILES.get('icon', False):
+            form = ImageUploader(request.POST, request.FILES)
+            if form.is_valid():
+                group.icon = form.cleaned_data['icon']
+
+        group.save()
+
+        return render(request, 'groups/edit.html', {'group':group})
+    else:
+        return render(request, 'groups/edit.html', {'group':group})

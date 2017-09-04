@@ -1,8 +1,6 @@
 {% extends "base.html" %}
 
 {% block content %}
-{{ form.errors }}
-{{ form.non_field_errors }}
     <h1>{% block title %}Edit Profile{% endblock %}</h1>
     {% if messages %}
         {% for message in messages %}

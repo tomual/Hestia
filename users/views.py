@@ -2,8 +2,8 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import Permission, User
 from django.contrib import messages
-from .forms import ImageUploader
 
+from .forms import ImageUploader
 
 def index(request):
     users = User.objects.all()
@@ -54,8 +54,6 @@ def edit(request):
         user_edit.email = request.POST['email']
         user_edit.profile.location = request.POST['location']
         user_edit.profile.description = request.POST['description']
-
-        print(request.FILES.get('icon', False))
 
         if request.FILES.get('icon', False):
             form = ImageUploader(request.POST, request.FILES)

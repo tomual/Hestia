@@ -3,6 +3,11 @@
 {% block content %}
 <div class="group">
     <h1>{% block title %}{{ group.name }}{% endblock %}</h1>
+
+	{% if is_owner %}
+		<a href="/groups/{{ group.id }}/edit" class="button">Edit Group</a>
+	{% endif %}
+
 	<div class="icon"><img src="/{{ group.icon }}"></div>
     <p>Created {{ group.created }}</p>
     <p>Owned by {{ group.owner.username }}</p>
