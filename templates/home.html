@@ -1,7 +1,19 @@
 {% extends "base.html" %}
-
+{% load timesinceshort %}
 {% block content %}
 
 	<h1>{% block title %}Home{% endblock %}</h1>
+
+	<h2>Recent Responses</h2>
+	{{ newest_response_thread.thread_title }}
+	{{ newest_response.response_content }}
+	{{ newest_response.author }}
+	{{ newest_response.response_date|timesinceshort }} ago
+
+	<h2>Newest Thread</h2>
+	{{ newest_thread.thread_title }}
+
+	<h2>Newest User</h2>
+	{{ newest_user.username }}
 
 {% endblock %}

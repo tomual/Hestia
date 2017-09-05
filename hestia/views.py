@@ -6,7 +6,19 @@ from forums.models import Thread, Response
 from django.contrib.auth.models import User
 
 def home(request):
-   return render(request, 'home.html')
+	newest_response = Response.objects.order_by('-response_date').first()
+	newest_response_thread = Thread.objects.get(pk = newest_response.thread_id)
+	newest_user = User.objects.order_by('-date_joined').first()
+	newest_thread = Thread.objects.order_by('-thread_date').first()
+
+	data = {
+		'newest_response_thread': newest_response_thread,
+		'newest_response': newest_response,
+		'newest_thread': newest_thread,
+		'newest_user': newest_user
+	}
+
+	return render(request, 'home.html', data)
 
 def about(request):
 
