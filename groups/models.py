@@ -10,12 +10,6 @@ class Group(models.Model):
     icon = models.ImageField(upload_to='static/group_icons', blank=True)
     members = models.ManyToManyField(User, through='Membership')
 
-    def is_owner(self, user):
-        try:
-            return self.membership_set.get(user=user)
-        except Membership.DoesNotExist:
-            return False
-
     def __str__(self):
     	return self.name
 

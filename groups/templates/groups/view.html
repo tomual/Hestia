@@ -4,8 +4,16 @@
 <div class="group">
     <h1>{% block title %}{{ group.name }}{% endblock %}</h1>
 
-	{% if is_owner %}
+	{% if membership.owner %}
 		<a href="/groups/{{ group.id }}/edit" class="button">Edit Group</a>
+	{% endif %}
+
+	{% if not membership %}
+		<a href="/groups/{{ group.id }}/join" class="button">Join Group</a>
+	{% endif %}
+
+	{% if membership %}
+		<a href="/groups/{{ group.id }}/leave" class="button">Leave Group</a>
 	{% endif %}
 
 	<div class="icon"><img src="/{{ group.icon }}"></div>

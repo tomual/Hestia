@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+	<h1>{% block title %}About{% endblock %}</h1>
+
+	<table>
+		<tr>
+			<td>Forum since</td>
+			<td>{{ first_thread_date.thread_date__min|date:"j M Y" }}</td>
+		</tr>
+		<tr>
+			<td>Number of users</td>
+			<td>{{ number_of_users }}</td>
+		</tr>
+		<tr>
+			<td>Newest user</td>
+			<td><a href="/users/profile/{{ newest_user.username }}">{{ newest_user.username }}</a></td>
+		</tr>
+		<tr>
+			<td>Number of posts</td>
+			<td>{{ number_of_posts }}</td>
+		</tr>
+		<tr>
+			<td>Most popular thread</td>
+			<td><a href="/forums/{{ popular_thread.id }}">{{ popular_thread.thread_title }}</a></td>
+		</tr>
+		<tr>
+			<td>Top Poster</td>
+			<td><a href="/users/profile/{{ top_poster.username }}">{{ top_poster.username }}</a></td>
+		</tr>
+	</table>
+
+	<h2>Post Ranking</h2>
+	<table>
+    {% for poster in post_rankings %}
+		<tr>
+			<td><a href="/users/profile/{{ poster.username }}">{{ poster.username }}</a></td>
+			<td>{{ poster.num_replies }}</td>
+		</tr>
+    {% endfor %}
+	</table>
+
+{% endblock %}

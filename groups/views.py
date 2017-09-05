@@ -12,8 +12,11 @@ def index(request):
 
 def view(request, id):
     group = Group.objects.get(id=id)
-    is_owner = group.is_owner(request.user)
-    return render(request, 'groups/view.html', {'group':group, 'is_owner':is_owner})
+    try:
+        membership = group.membership_set.get(user=request.user)
+    except Membership.DoesNotExist:
+        membership = False
+    return render(request, 'groups/view.html', {'group':group, 'membership':membership})
 
 def new(request):
     if request.method == "POST":
@@ -48,3 +51,17 @@ def edit(request, id):
         return render(request, 'groups/edit.html', {'group':group})
     else:
         return render(request, 'groups/edit.html', {'group':group})
+
+def join(request, id):
+    group = Group.objects.get(id=id)
+    Membership.objects.create(user=request.user,group=group)
+    return HttpResponseRedirect('/groups/' + str(group.id))
+
+def leave(request, id):
+    group = Group.objects.get(id=id)
+
+    try:
+        group.membership_set.get(user=request.user).delete()
+    except Membership.DoesNotExist:
+        pass
+    return HttpResponseRedirect('/groups/' + str(group.id))
