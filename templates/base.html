@@ -43,7 +43,9 @@
 			{% block content %}{% endblock %}
 		</div>
 		<div class="box sidebar">
-			Right stuff
+			{% for recent_response in request.recent_responses %}
+				{{ recent_response.response_content }}
+			{% endfor %}
 		</div>
 	</div>
 	<div class="footer">Hestia 2017 | <a href="">Contact</a></div>
