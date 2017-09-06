@@ -12,11 +12,18 @@ def index(request):
 
 def view(request, id):
     group = Group.objects.get(id=id)
+    members = group.membership_set.all()
+
+    try:
+        owner = Membership.objects.get(group=group, owner=True)
+    except Membership.DoesNotExist:
+        owner = 'Nobody'
+
     try:
         membership = group.membership_set.get(user=request.user)
     except Membership.DoesNotExist:
-        membership = False
-    return render(request, 'groups/view.html', {'group':group, 'membership':membership})
+        membership = None
+    return render(request, 'groups/view.html', {'group':group, 'membership':membership, 'owner':owner, 'members':members})
 
 def new(request):
     if request.method == "POST":

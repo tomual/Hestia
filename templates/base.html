@@ -1,4 +1,5 @@
 {% load static %}
+{% load timesinceshort %}
 
 <!DOCTYPE html>
 <html>
@@ -43,9 +44,15 @@
 			{% block content %}{% endblock %}
 		</div>
 		<div class="box sidebar">
-			{% for recent_response in request.recent_responses %}
-				{{ recent_response.response_content }}
-			{% endfor %}
+			<div class="recent-responses">
+				{% for recent_response in request.recent_responses %}
+				<div class="response">
+					<div class="text-small"><b>{{ recent_response.thread.thread_title }}</b></div>
+					<p>{{ recent_response.response_content }}</p>
+					<div class="text-small">{{ recent_response.response_date|timesinceshort }} ago by {{ recent_response.author.username }}</div>
+				</div>
+				{% endfor %}
+			</div>
 		</div>
 	</div>
 	<div class="footer">Hestia 2017 | <a href="">Contact</a></div>

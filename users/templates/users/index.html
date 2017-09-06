@@ -3,10 +3,16 @@
 {% block content %}
 
     <h1>{% block title %}Users{% endblock %}</h1>
-    <ul>
+
+    <div class="users">
     {% for user in users %}
-        <li><a href="/users/profile/{{ user.username }}">{{ user.username }}</a></li>
+        <div class="user">
+			<div class="icon"><a href="/users/profile/{{ user.username }}"><img src="/{{ user.profile.icon }}"></a></div>
+			<div class="username"><a href="/users/profile/{{ user.username }}">{{ user.username }}</a></div>
+			<div class="location">{{ user.profile.location }}</div>
+			<div class="joined">Joined {{ user.date_joined|date:"m/d/Y" }}</div>
+        </div>
     {% endfor %}
-    </ul>
+    </div>
 
 {% endblock %}

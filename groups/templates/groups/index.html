@@ -3,10 +3,16 @@
 {% block content %}
 
     <h1>{% block title %}Groups{% endblock %}</h1>
-    <ul>
+
+    <div class="groups">
     {% for group in groups %}
-        <li><a href="/groups/{{ group.id }}">{{ group.name }}</a></li>
+        <div class="group">
+			<div class="icon"><a href="/groups/{{ group.id }}"><img src="/{{ group.icon }}"></a></div>
+			<div class="name"><a href="/groups/{{ group.id }}">{{ group.name }}</a></div>
+			<div class="description">{{ group.description }}</div>
+			<div class="created">Formed {{ group.created|date:"m/d/Y" }}</div>
+        </div>
     {% endfor %}
-    </ul>
+    </div>
 
 {% endblock %}

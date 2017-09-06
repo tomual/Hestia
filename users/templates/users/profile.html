@@ -3,6 +3,7 @@
 {% block content %}
 
 <div class="profile">
+
     <h1>{% block title %}{{ profile_user.username }}{% endblock %}</h1>
 
 	{% if user.is_authenticated %}
@@ -11,10 +12,16 @@
 		{% endif %}
 	{% endif %}
 
-	<div class="icon"><img src="/{{ profile_user.profile.icon }}"></div>
-    <p>{{ profile_user.profile.location }}</p>
-    <p>Joined {{ profile_user.date_joined }}</p>
-    <p>Last Login {{ profile_user.last_login }}</p>
-    <p>{{ profile_user.profile.description }}</p>
+    <div class="summary">
+		<div class="icon"><img src="/{{ profile_user.profile.icon }}"></div>
+	    <p><b>Location</b>: {{ profile_user.profile.location }}</p>
+	    <p><b>Joined</b>:  {{ profile_user.date_joined|date:"m/d/Y" }}</p>
+	    <p><b>Last Login</b>:  {{ profile_user.last_login|date:"m/d/Y h:iA" }}</p>
+	</div>
+
+    <div class="description">
+		{{ profile_user.profile.description }}
+    </div>
+
 </div>
 {% endblock %}

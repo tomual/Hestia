@@ -4,15 +4,21 @@ html, body { height: 100%; }
 body {
 	font-family: 'Open Sans', sans-serif;
 	background: #2F3838;
-	color: #FFF;
+	color: #909696;
+	font-size: 14px;
 	line-height: 1.5em;
 }
 
 a {
-	color: #FFF;
+	color: #909696;
+}
+
+img {
+	max-width: 100%;
 }
 
 h1 {
+	color: #FFF;
 	font-family: 'Montserrat', sans-serif;
 	font-size: 22px;
 	text-transform: uppercase;
@@ -21,9 +27,24 @@ h1 {
 	margin-bottom: 40px;
 }
 
+h2 {
+	color: #FFF;
+	font-family: 'Montserrat', sans-serif;
+	font-size: 16px;
+	text-transform: uppercase;
+	letter-spacing: 3px;
+	font-weight: normal;
+	margin-bottom: 30px;
+	margin-top: 40px;
+}
+
 li {
 	list-style-type: none;
 	line-height: 1.7em;
+}
+
+.text-small {
+	font-size: 11px;
 }
 
 .wrapper {
@@ -144,15 +165,21 @@ input, textarea {
     box-sizing: border-box;
 }
 
-.primary-button {
+.button-primary {
     background: #22afd0;
-    padding: 15px 35px;
+    padding: 10px 25px;
     border: 0;
     border-radius: 3px;
     color: #FFF;
     font-weight: bold;
     letter-spacing: 0.5px;
     margin-top: 20px;
+    display: inline-block;
+    margin: 20px 0;
+}
+
+a.button {
+	text-decoration: none;
 }
 
 label {
@@ -163,20 +190,16 @@ label {
 
 }
 
-/* GLOBAL */
+/* SIDEBAR */
 
+.recent-responses .response {
+	margin-bottom: 10px;
+}
 
 /* HEADER */
 
 
 /* FORUMS */
-
-.icon img {
-	width: 50px;
-	height: 50px;
-	float: left;
-	border-radius: 25px;
-}
 
 .author {
 }
@@ -195,7 +218,7 @@ label {
 	margin-left: 10px;
 }
 
-.response {
+.thread .response {
 	margin-top: 50px;
 	border-top: 1px solid #2F3838;
 	padding-top: 30px ;
@@ -216,12 +239,99 @@ label {
     padding-top: 50px;
 }
 
-
 /* USERS */
 
+.users .icon img {
+	width: 60px;
+	height: 60px;
+	float: left;
+	border-radius: 3px;
+	margin-right: 20px;
+}
+
+.users .user {
+	display: block;
+	height: 80px;
+	width: 100%;
+}
+
+.users .location {
+	height: 1em;
+	display: inline-block;
+}
+
+.users .username a {
+	color: #FFF;
+	text-decoration: none;
+	font-weight: bold;
+	letter-spacing: 1px;
+}
+
+.users .username a:hover {
+	border-bottom: 1px solid #FFF;
+}
+
+.users .joined {
+	font-size: 11px;
+	opacity: 0.7;
+}
+
+/* PROFILE */
+
+.profile .icon img {
+	float: left;
+	width: 100px;
+	height: 100px;
+	margin-right: 20px;
+	border-radius: 3px;
+}
+
+.profile .summary {
+	height: 120px;
+	margin-top: 30px;
+}
 
 /* GROUPS */
 
+.groups .icon img {
+	width: 60px;
+	height: 60px;
+	float: left;
+	border-radius: 3px;
+	margin-right: 20px;
+}
+
+.groups .group {
+	display: block;
+	height: 80px;
+	width: 100%;
+}
+
+.groups .description {
+	height: 1em;
+	display: inline-block;
+}
+
+.groups .name a {
+	color: #FFF;
+	text-decoration: none;
+	font-weight: bold;
+	letter-spacing: 1px;
+}
+
+.groups .name a:hover {
+	border-bottom: 1px solid #FFF;
+}
+
+.groups .created {
+	font-size: 11px;
+	opacity: 0.7;
+}
+
+.group .info {
+	margin-top: 20px;
+	font-size: 11px;
+}
 
 /* FOOTER */
 
