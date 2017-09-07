@@ -31,10 +31,12 @@ def new(request):
         if form.is_valid():
             if request.user.is_authenticated():
                 user = request.user
-            name = request.POST['name']
-            description = request.POST['description']
+            name = form.cleaned_data['name']
+            description = form.cleaned_data['description']
             created = timezone.now()
-            group = Group(name=name, description=description, created=created, icon=form.cleaned_data['icon'])
+            group = Group(name=name, description=description, created=created)
+            if request.FILES.get('icon', False):
+                group.icon = form.cleaned_data['icon']
             group.save()
             if group is not None:
                 Membership.objects.create(user=user,group=group, owner=True)
@@ -52,7 +54,7 @@ def edit(request, id):
         if form.is_valid():
             if request.FILES.get('icon', False):
                 group.icon = form.cleaned_data['icon']
-            group.description = request.POST['description']
+            group.description = form.cleaned_data['description']
             group.save()
         return render(request, 'groups/edit.html', {'group':group, 'form':form})
     else:

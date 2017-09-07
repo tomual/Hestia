@@ -5,6 +5,7 @@ from django.contrib import messages
 from django.core.exceptions import ValidationError
 from django.db import IntegrityError
 
+from users.models import Profile
 from .forms import UserForm, LoginForm, RegisterForm
 
 def index(request):
@@ -46,6 +47,7 @@ def register_view(request):
             except IntegrityError as e:
                 messages.error(request, 'Username taken')
                 return render(request, 'users/register.html', {'form':form})
+            profile = Profile.objects.create(user=user)
             login(request, user)
             return redirect('/')
         return render(request, 'users/register.html', {'form':form})

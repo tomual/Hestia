@@ -7,7 +7,7 @@ class Group(models.Model):
     name = models.CharField(max_length=200)
     description = models.CharField(max_length=200)
     created = models.DateTimeField('date created')
-    icon = models.ImageField(upload_to='static/group_icons', blank=True)
+    icon = models.ImageField(upload_to='static/group_icons', default='static/group_icons/aurora2.png')
     members = models.ManyToManyField(User, through='Membership')
 
     def __str__(self):
