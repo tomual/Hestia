@@ -11,7 +11,7 @@ class RecentResponsesMiddleware(object):
     def __call__(self, request):
         request.timestamp = datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S')
 
-        request.recent_responses = Response.objects.order_by('-response_date')[:5]
+        request.recent_responses = Response.objects.order_by('-posted')[:5]
 
         response = self.get_response(request)
         return response

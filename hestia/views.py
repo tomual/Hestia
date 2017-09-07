@@ -6,10 +6,10 @@ from forums.models import Thread, Response
 from django.contrib.auth.models import User
 
 def home(request):
-	newest_response = Response.objects.order_by('-response_date').first()
+	newest_response = Response.objects.order_by('-posted').first()
 	newest_response_thread = Thread.objects.get(pk = newest_response.thread_id)
 	newest_user = User.objects.order_by('-date_joined').first()
-	newest_thread = Thread.objects.order_by('-thread_date').first()
+	newest_thread = Thread.objects.order_by('-posted').first()
 
 	data = {
 		'newest_response_thread': newest_response_thread,
@@ -22,7 +22,7 @@ def home(request):
 
 def about(request):
 
-	first_thread_date = Thread.objects.all().aggregate(Min('thread_date'))
+	first_posted = Thread.objects.all().aggregate(Min('posted'))
 	number_of_users = User.objects.count()
 	newest_user = User.objects.order_by('-date_joined').first()
 	number_of_posts = Thread.objects.count() + Response.objects.count()
@@ -34,7 +34,7 @@ def about(request):
 
 
 	data = {
-		'first_thread_date': first_thread_date,
+		'first_posted': first_posted,
 		'number_of_users': number_of_users,
 		'newest_user': newest_user,
 		'number_of_posts': number_of_posts,

@@ -60,7 +60,7 @@ li {
 	background: #23282A;
 }
 
-.title {
+.header .title {
 	padding: 20px;
 	padding-left: 40px;
 	text-transform: uppercase;
@@ -163,6 +163,23 @@ input, textarea {
     font-family: inherit;
     margin: 10px 0;
     box-sizing: border-box;
+    border-radius: 3px;
+}
+
+.errorlist {
+	color: #D07522;
+}
+
+.alert-error {
+    background: rgba(131, 62, 0, 0.28);
+    color: #D07522;
+    padding: 10px 15px;
+    border: 1px solid rgba(131, 62, 0, 0.8);
+    margin-bottom: 20px;
+}
+
+.errorlist + input, .errorlist + textarea {
+	border: 2px solid #D07522;
 }
 
 .button-primary {
@@ -194,6 +211,15 @@ label {
 
 .recent-responses .response {
 	margin-bottom: 10px;
+	word-break: break-word;
+}
+
+.recent-responses a {
+	text-decoration: none;
+}
+
+.recent-responses .text-small b {
+	color: #FFF;
 }
 
 /* HEADER */
@@ -201,17 +227,46 @@ label {
 
 /* FORUMS */
 
-.author {
+.button-primary.new {
+	margin-top: 0;
 }
 
-.author .name {
+table.threads {
+	width: 100%;
+}
+
+table.threads td div {
+	display: inline-block;
+}
+
+td.last-reply {
+    width: 120px;
+}
+
+table.threads td {
+	padding: 10px 0;
+}
+
+table.threads .title {
+	color: #FFF;
+	font-weight: bold;
+}
+
+table.threads .posted {
+	font-size: 11px;
+}
+
+.poster {
+}
+
+.poster .name {
 	display: inline-block;
 	font-weight: 600;
 	letter-spacing: 0.5px;
 	opacity: 0.9;
 }
 
-.author .location {
+.poster .location {
 	font-size: 12px;
 	display: inline-block;
 	opacity: 0.3;
@@ -233,10 +288,17 @@ label {
 	padding-top: 50px;
 }
 
+h1 + .respond {
+    border-top: 0;
+    margin-top: 0;
+    padding-top: 0;
+}
+
 .respond {
     border-top: 1px solid rgb(58, 71, 74);
     margin-top: 50px;
     padding-top: 50px;
+    padding-bottom: 50px;
 }
 
 /* USERS */

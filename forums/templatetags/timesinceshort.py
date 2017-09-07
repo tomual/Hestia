@@ -56,7 +56,7 @@ def timesinceshort(d, now=None, reversed=False):
     since = delta.days * 24 * 60 * 60 + delta.seconds
     if since <= 0:
         # d is in the future compared to now, stop processing.
-        return avoid_wrapping(gettext('0 minutes'))
+        return avoid_wrapping(gettext('0m'))
     for i, (seconds, name) in enumerate(TIMESINCE_CHUNKS):
         count = since // seconds
         if count != 0:

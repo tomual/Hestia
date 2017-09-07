@@ -1,21 +1,33 @@
 {% extends "base.html" %}
+{% load timesinceshort %}
 
 {% block content %}
 
     <h1>{% block title %}Forums{% endblock %}</h1>
 
+    <a href="/forums/new" class="button button-primary new">New Thread</a>
+
     {% if latest_thread_list %}
-        <ul>
+    <table class="threads">
+        <tr>
+            <td>Thread</td>
+            <td>Responses</td>
+            <td>Last Response</td>
+        </tr>
         {% for thread in latest_thread_list %}
-            <li class="thread">
-                <a href="/forums/{{ thread.id }}/">{{ thread.thread_title }}</a> 
-                <span class="preview">{{ thread.thread_content|truncatewords_html:10 }}</span>
-                <br>
-                <span class="posted">{{ thread.thread_date|timesince }} ago</span>
-                <span class="author">by {{ thread.author }}</span>
-            </li>
+        <tr>
+            <td class="thread">
+                <a href="/forums/{{ thread.id }}/">
+                    <div class="title">{{ thread.title }}</div><br>
+                    <div class="preview">{{ thread.message|truncatechars:43 }}</div><br>
+                    <div class="posted">{{ thread.posted|timesince }} ago by <b>{{ thread.poster }}</b></div><br>
+                </a>
+            </td>
+            <td class="responses">{{ thread.num_responses }}</td>
+            <td class="last-reply">{{ thread.recent_response }}</td>
+        </tr>
         {% endfor %}
-        </ul>
+    </table>
     {% else %}
         <p>No threads</p>
     {% endif %}

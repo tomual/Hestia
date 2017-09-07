@@ -9,32 +9,9 @@
             </div>
         {% endfor %}
     {% endif %}
-    <form method="POST" enctype="multipart/form-data">
+    <form method="POST" enctype="multipart/form-data" novalidate>
         {% csrf_token %}
-
-        <label>Username</label>
-        <input type="text" name="username" value="{{ user.username }}" class="disabled">
-
-        <label>Email</label>
-        <input type="email" name="email" value="{{ user.email }}">
-
-        <label>Location</label>
-        <input type="text" name="location" value="{{ user.profile.location }}">
-
-        <label>Description</label>
-        <textarea name="description">{{ user.profile.description }}</textarea>
-
-        <label>Icon</label>
-        <input type="file" name="icon">
-
-<!--         <hr />
-
-        <label>New Password</label>
-        <input type="password" name="password">
-
-        <label>Confirm Password</label>
-        <input type="password" name="password2"> -->
-
+        {{ form }}
         <button type="submit" class="button button-primary">Edit</button>
     </form>
 

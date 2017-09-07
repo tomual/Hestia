@@ -4,8 +4,17 @@
 
 <div class="thread">
 
+	<h1>{% block title %}Responding to: {{ thread.title }}{% endblock %}</h1>
+	<div class="respond">
+		{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+		<form action="/forums/{{ thread.id }}/respond/" method="post" novalidate>
+		{% csrf_token %}
+		{{ form }}
+		<button type="submit" class="button button-primary">Reply</button>
+		</form>
+	</div>
 	<div class="first">
-		<h1>{% block title %}{{ thread.title }}{% endblock %}</h1>
 		<div class="poster">
 			<div class="name">{{ thread.poster }}</div>
 			<div class="location">{{ thread.poster.profile.location }}</div>
@@ -25,15 +34,6 @@
 			<div class="post">{{ response.message }}</div>
 		</div>
 		{% endfor %}
-	</div>
-	<div class="respond">
-		{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
-
-		<form action="/forums/{{ thread.id }}/respond/" method="post" novalidate>
-		{% csrf_token %}
-		{{ form }}
-		<button type="submit" class="button button-primary">Reply</button>
-		</form>
 	</div>
 </div>
 {% endblock %}

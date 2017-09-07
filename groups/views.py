@@ -3,7 +3,7 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.utils import timezone
 
 from .models import Group, Membership
-from .forms import ImageUploader
+from .forms import GroupForm
 from django.contrib.auth.models import User
 
 def index(request):
@@ -27,37 +27,41 @@ def view(request, id):
 
 def new(request):
     if request.method == "POST":
-        name = request.POST['name']
-        description = request.POST['description']
-        created = timezone.now()
-        if request.user.is_authenticated():
-            user = request.user
-        group = Group(name=name, description=description, created=created)
-        group.save()
-        if group is not None:
-            Membership.objects.create(user=user,group=group, owner=True)
-            return HttpResponseRedirect('/groups/' + str(group.id))
-        else:
-            messages.error(request, 'Bad.')
-        return render(request, 'groups/new.html')
+        form = GroupForm(request.POST, request.FILES)
+        if form.is_valid():
+            if request.user.is_authenticated():
+                user = request.user
+            name = request.POST['name']
+            description = request.POST['description']
+            created = timezone.now()
+            group = Group(name=name, description=description, created=created, icon=form.cleaned_data['icon'])
+            group.save()
+            if group is not None:
+                Membership.objects.create(user=user,group=group, owner=True)
+                return HttpResponseRedirect('/groups/' + str(group.id))
+
+        return render(request, 'groups/new.html', {'form':form})
     else:
-        return render(request, 'groups/new.html')
+        form = GroupForm()
+        return render(request, 'groups/new.html', {'form':form})
 
 def edit(request, id):
     group = Group.objects.get(id=id)
     if request.method == "POST":
-        group.description = request.POST['description']
-
-        if request.FILES.get('icon', False):
-            form = ImageUploader(request.POST, request.FILES)
-            if form.is_valid():
+        form = GroupForm(request.POST, request.FILES)
+        if form.is_valid():
+            if request.FILES.get('icon', False):
                 group.icon = form.cleaned_data['icon']
-
-        group.save()
-
-        return render(request, 'groups/edit.html', {'group':group})
+            group.description = request.POST['description']
+            group.save()
+        return render(request, 'groups/edit.html', {'group':group, 'form':form})
     else:
-        return render(request, 'groups/edit.html', {'group':group})
+        data = {
+            'name': group.name,
+            'description': group.description,
+        }
+        form = GroupForm(initial=data)
+        return render(request, 'groups/edit.html', {'group':group, 'form':form})
 
 def join(request, id):
     group = Group.objects.get(id=id)
@@ -66,7 +70,6 @@ def join(request, id):
 
 def leave(request, id):
     group = Group.objects.get(id=id)
-
     try:
         group.membership_set.get(user=request.user).delete()
     except Membership.DoesNotExist:

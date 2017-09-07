@@ -1,7 +1,9 @@
 {% extends "base.html" %}
 
 {% block content %}
+
     <h1>{% block title %}Edit Group{% endblock %}</h1>
+
     {% if messages %}
         {% for message in messages %}
             <div class="alert alert-{{ message.tags }}">
@@ -9,18 +11,9 @@
             </div>
         {% endfor %}
     {% endif %}
-    <form method="POST" enctype="multipart/form-data">
+    <form method="POST" enctype="multipart/form-data" novalidate>
         {% csrf_token %}
-
-        <label>Group Name</label>
-        <input type="text" name="username" value="{{ group.name }}" class="disabled">
-
-        <label>Group Description</label>
-        <textarea name="description">{{ group.description }}</textarea>
-
-        <label>Icon</label>
-        <input type="file" name="icon">
-
+        {{ form }}
         <button type="submit" class="button button-primary">Edit</button>
     </form>
 

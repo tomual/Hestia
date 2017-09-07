@@ -7,7 +7,7 @@
 	<table>
 		<tr>
 			<td>Forum since</td>
-			<td>{{ first_thread_date.thread_date__min|date:"j M Y" }}</td>
+			<td>{{ first_posted.posted__min|date:"j M Y" }}</td>
 		</tr>
 		<tr>
 			<td>Number of users</td>
@@ -23,7 +23,7 @@
 		</tr>
 		<tr>
 			<td>Most popular thread</td>
-			<td><a href="/forums/{{ popular_thread.id }}">{{ popular_thread.thread_title }}</a></td>
+			<td><a href="/forums/{{ popular_thread.id }}">{{ popular_thread.title }}</a></td>
 		</tr>
 		<tr>
 			<td>Top Poster</td>

@@ -8,12 +8,12 @@ class ResponseInline(admin.TabularInline):
 
 class ThreadAdmin(admin.ModelAdmin):
     fieldsets = [
-        (None,               {'fields': ['thread_title', 'thread_content']}),
-        ('Date information', {'fields': ['thread_date']}),
+        (None,               {'fields': ['title', 'message']}),
+        ('Date information', {'fields': ['posted']}),
     ]
     inlines = [ResponseInline]
-    list_display = ('thread_title', 'thread_date', 'was_posted_recently')
-    list_filter = ['thread_date']
-    search_fields = ['thread_title', 'thread_content']
+    list_display = ('title', 'posted', 'was_posted_recently')
+    list_filter = ['posted']
+    search_fields = ['title', 'message']
 
 admin.site.register(Thread, ThreadAdmin)

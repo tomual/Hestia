@@ -25,7 +25,6 @@
 			<a href="/users/login">Log in</a> <span>or</span> <a href="/users/register">Register</a>
 		{% endif %}
 
-		
 		</div>
 	</div>
 	<div class="main">
@@ -47,9 +46,11 @@
 			<div class="recent-responses">
 				{% for recent_response in request.recent_responses %}
 				<div class="response">
-					<div class="text-small"><b>{{ recent_response.thread.thread_title }}</b></div>
-					<p>{{ recent_response.response_content }}</p>
-					<div class="text-small">{{ recent_response.response_date|timesinceshort }} ago by {{ recent_response.author.username }}</div>
+					<a href="/forums/{{ recent_response.thread.id }}">
+						<div class="text-small"><b>{{ recent_response.thread.title }}</b></div>
+						<p>{{ recent_response.message|truncatechars:43 }}</p>
+						<div class="text-small">{{ recent_response.posted|timesinceshort }} ago by {{ recent_response.poster.username }}</div>
+					</a>
 				</div>
 				{% endfor %}
 			</div>

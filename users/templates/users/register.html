@@ -10,20 +10,9 @@
             </div>
         {% endfor %}
     {% endif %}
-    <form method="POST">
+    <form method="POST" enctype="multipart/form-data" novalidate>
         {% csrf_token %}
-        <p>
-            <label>Username</label>
-            <input type="text" name="username">
-        </p>
-        <p>
-            <label>Email</label>
-            <input type="email" name="email">
-        </p>
-        <p>
-            <label>Password</label>
-            <input type="password" name="password">
-        </p>
+        {{ form }}
         <button type="submit" class="button button-primary">Register</button>
     </form>
 

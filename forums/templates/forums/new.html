@@ -11,16 +11,9 @@
             </div>
         {% endfor %}
     {% endif %}
-    <form method="POST">
+    <form method="POST" novalidate>
         {% csrf_token %}
-        <p>
-            <label>Thread Title</label>
-            <input type="text" name="thread_title">
-        </p>
-        <p>
-            <label>Thread Message</label>
-            <textarea name="thread_content" rows="8"></textarea>
-        </p>
+        {{ form }}
         <button type="submit" class="button button-primary">Post</button>
     </form>
 
