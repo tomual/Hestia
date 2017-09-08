@@ -5,18 +5,12 @@ from django.views import generic
 from datetime import datetime
 from django.utils import timezone
 from django.db.models import Count, Max, Case, When, Value, DateField, IntegerField, DateTimeField
+from django.db import connection
+
 
 from .models import Thread, Response
 from django.contrib.auth.models import User
 from .forms import ThreadForm, ResponseForm
-
-class IndexView(generic.ListView):
-    template_name = 'forums/index.html'
-    context_object_name = 'latest_thread_list'
-
-    def get_queryset(self):
-        return Thread.objects.annotate(num_responses=Count('response')).annotate(recent_response=Max('response__posted')).annotate(test=Max('response__posted'))
-
 
 def view(request, thread_id):
     thread = get_object_or_404(Thread, pk=thread_id)
@@ -57,3 +51,48 @@ def new(request):
     else:
         form = ThreadForm()
         return render(request, 'forums/new.html', {'form': form})
+
+def index(request):
+    sql = '''
+        SELECT t.*,
+           r.num_responses,
+           tu.username AS thread_poster,
+           ru.username AS response_poster,
+           CASE
+               WHEN r.posted IS NULL THEN t.posted
+               ELSE r.posted
+           END AS last_touch
+        FROM forums_thread t
+        LEFT JOIN
+          (SELECT r.*,
+                  COUNT(*) AS num_responses
+           FROM forums_response r
+           GROUP BY thread_id
+           ORDER BY posted DESC) r ON t.id = thread_id
+        LEFT JOIN
+          (SELECT username,
+                  id
+           FROM auth_user) tu ON tu.id = t.poster_id
+        LEFT JOIN
+          (SELECT username,
+                  id
+           FROM auth_user) ru ON ru.id = r.poster_id
+        ORDER BY last_touch DESC'''
+    with connection.cursor() as cursor:
+        cursor.execute(sql)
+        threads = dictfetchall(cursor)
+
+    for thread in threads:
+        #raise Exception({thread['last_touch'],})
+        try:
+            thread['last_touch'] = datetime.strptime(thread['last_touch'], '%Y-%m-%d %H:%M:%S.%f')
+        except ValueError:
+            thread['last_touch'] = datetime.strptime(thread['last_touch'], '%Y-%m-%d %H:%M:%S')
+    return render(request, 'forums/index.html', {'threads':threads})    
+
+def dictfetchall(cursor):
+    desc = cursor.description
+    return [
+        dict(zip([col[0] for col in desc], row))
+        for row in cursor.fetchall()
+    ]

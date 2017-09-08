@@ -7,24 +7,26 @@
 
     <a href="/forums/new" class="button button-primary new">New Thread</a>
 
-    {% if latest_thread_list %}
+    {% if threads %}
     <table class="threads">
         <tr>
             <td>Thread</td>
             <td>Responses</td>
             <td>Last Response</td>
         </tr>
-        {% for thread in latest_thread_list %}
+        {% for thread in threads %}
         <tr>
             <td class="thread">
                 <a href="/forums/{{ thread.id }}/">
                     <div class="title">{{ thread.title }}</div><br>
                     <div class="preview">{{ thread.message|truncatechars:43 }}</div><br>
-                    <div class="posted">{{ thread.posted|timesince }} ago by <b>{{ thread.poster }}</b></div><br>
+                    <div class="posted">{{ thread.posted|timesince }} ago by <b>{{ thread.thread_poster }}</b></div><br>
                 </a>
             </td>
-            <td class="responses">{{ thread.num_responses }}</td>
-            <td class="last-reply">{{ thread.recent_response }}</td>
+            <td class="responses">{{ thread.num_responses|default:'-' }}</td>
+            <td class="last-reply">
+                {{ thread.last_touch|timesinceshort }} ago<br /> by <b>{{ thread.response_poster }}</b> &raquo;
+            </td>
         </tr>
         {% endfor %}
     </table>
