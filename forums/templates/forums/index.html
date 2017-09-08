@@ -9,26 +9,30 @@
 
     {% if threads %}
     <table class="threads">
-        <tr>
-            <td>Thread</td>
-            <td>Responses</td>
-            <td>Last Response</td>
-        </tr>
-        {% for thread in threads %}
-        <tr>
-            <td class="thread">
-                <a href="/forums/{{ thread.id }}/">
-                    <div class="title">{{ thread.title }}</div><br>
-                    <div class="preview">{{ thread.message|truncatechars:43 }}</div><br>
-                    <div class="posted">{{ thread.posted|timesince }} ago by <b>{{ thread.thread_poster }}</b></div><br>
-                </a>
-            </td>
-            <td class="responses">{{ thread.num_responses|default:'-' }}</td>
-            <td class="last-reply">
-                {{ thread.last_touch|timesinceshort }} ago<br /> by <b>{{ thread.response_poster }}</b> &raquo;
-            </td>
-        </tr>
-        {% endfor %}
+        <thead>
+            <tr>
+                <td>Thread</td>
+                <td>Responses</td>
+                <td>Last Response</td>
+            </tr>
+        </thead>
+        <tbody>
+            {% for thread in threads %}
+            <tr>
+                <td class="thread">
+                    <a href="/forums/{{ thread.id }}/">
+                        <div class="title">{{ thread.title }}</div><br>
+                        <div class="preview">{{ thread.message|truncatechars:43 }}</div><br>
+                        <div class="posted">{{ thread.posted|timesince }} ago by <b>{{ thread.thread_poster }}</b></div><br>
+                    </a>
+                </td>
+                <td class="responses"><a href="/forums/{{ thread.id }}/">{{ thread.num_responses|default:'-' }}</a></td>
+                <td class="last-reply">
+                    <a href="/forums/{{ thread.id }}/#bottom">by <b>{{ thread.response_poster }}</b> &raquo;<br /><span class="text-small">{{ thread.last_touch|timesinceshort }} ago</span></a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
     </table>
     {% else %}
         <p>No threads</p>

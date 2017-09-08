@@ -48,7 +48,6 @@ li {
 }
 
 .wrapper {
-	height: 100%;
 	display: table;
 	width: 100%;
 }
@@ -81,7 +80,7 @@ li {
 }
 
 .hero {
-	height: 200px;
+    height: 120px;
 	display: table;
 	width: 100%;
 	background: #2B3133;
@@ -184,9 +183,8 @@ input, textarea {
 
 .button-primary {
     background: #22afd0;
-    padding: 10px 25px;
+    padding: 8px 20px;
     border: 0;
-    border-radius: 3px;
     color: #FFF;
     font-weight: bold;
     letter-spacing: 0.5px;
@@ -210,7 +208,7 @@ label {
 /* SIDEBAR */
 
 .recent-responses .response {
-	margin-bottom: 10px;
+	margin-bottom: 20px;
 	word-break: break-word;
 }
 
@@ -228,11 +226,13 @@ label {
 /* FORUMS */
 
 .button-primary.new {
-	margin-top: 0;
+    float: right;
+    margin-top: -60px;
 }
 
 table.threads {
 	width: 100%;
+	margin-top: 20px;
 }
 
 table.threads td div {
@@ -243,8 +243,34 @@ td.last-reply {
     width: 120px;
 }
 
+td.last-reply a, td.responses a {
+    text-decoration: none;
+}
+
+table.threads thead td {
+    text-transform: uppercase;
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+table.threads thead td {
+    border-bottom: 1px solid rgba(144, 150, 150, 0.12);
+    border-top: 1px solid rgba(144, 150, 150, 0.12);
+    padding: 20px 0;
+}
+
+table.threads thead {
+
+    padding: 20px 0;
+}
+
 table.threads td {
 	padding: 10px 0;
+}
+
+table.threads td:first-child {
+	padding-top: 20px;
 }
 
 table.threads .title {
