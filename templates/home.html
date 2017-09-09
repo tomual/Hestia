@@ -5,15 +5,22 @@
 	<h1>{% block title %}Home{% endblock %}</h1>
 
 	<h2>Recent Responses</h2>
-	{{ newest_response_thread.title }}
-	{{ newest_response.message }}
-	{{ newest_response.poster }}
-	{{ newest_response.posted|timesinceshort }} ago
+
+    {% if newest_response_thread %}
+		{{ newest_response_thread.title }}
+		{{ newest_response.message }}
+		{{ newest_response.poster }}
+		{{ newest_response.posted|timesinceshort }} ago
+    {% endif %}
 
 	<h2>Newest Thread</h2>
-	{{ newest_thread.title }}
+    {% if newest_thread %}
+		{{ newest_thread.title }}
+    {% endif %}
 
 	<h2>Newest User</h2>
-	{{ newest_user.username }}
+    {% if newest_user %}
+		{{ newest_user.username }}
+    {% endif %}
 
 {% endblock %}

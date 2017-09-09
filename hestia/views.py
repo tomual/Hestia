@@ -7,7 +7,10 @@ from django.contrib.auth.models import User
 
 def home(request):
 	newest_response = Response.objects.order_by('-posted').first()
-	newest_response_thread = Thread.objects.get(pk = newest_response.thread_id)
+	if newest_response:
+		newest_response_thread = Thread.objects.get(pk = newest_response.thread_id)
+	else:
+		newest_response_thread = None
 	newest_user = User.objects.order_by('-date_joined').first()
 	newest_thread = Thread.objects.order_by('-posted').first()
 

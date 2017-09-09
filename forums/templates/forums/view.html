@@ -7,7 +7,8 @@
 	<div class="first">
 		<h1>{% block title %}{{ thread.title }}{% endblock %}</h1>
 		<div class="poster">
-			<div class="name">{{ thread.poster }}</div>
+			<div class="name"><a href="/users/profile/{{ thread.poster }}">{{ thread.poster }}</a></div>
+				<span>&middot;</span>
 			<div class="location">{{ thread.poster.profile.location }}</div>
 		</div>
 		<div class="time">{{ thread.posted|timesince }} ago</div>
@@ -18,7 +19,8 @@
 		{% for response in thread.response_set.all %}
 		<div class="response">
 			<div class="poster">
-				<div class="name">{{ response.poster }}</div>
+				<div class="name"><a href="/users/profile/{{ response.poster }}">{{ response.poster }}</a></div>
+				<span>&middot;</span>
 				<div class="location">{{ response.poster.profile.location }}</div>
 			</div>			
 			<div class="time">{{ response.posted|timesince }} ago</div>
@@ -28,6 +30,7 @@
 		<a name="bottom"></a>
 	</div>
 	<div class="respond">
+	<h2>Respond</h2>
 		{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
 
 		<form action="/forums/{{ thread.id }}/respond/" method="post" novalidate>

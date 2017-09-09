@@ -34,7 +34,7 @@ h2 {
 	text-transform: uppercase;
 	letter-spacing: 3px;
 	font-weight: normal;
-	margin-bottom: 30px;
+	margin-bottom: 20px;
 	margin-top: 40px;
 }
 
@@ -69,6 +69,7 @@ li {
 
 .main {
 	height: 100%;
+	min-height: 900px;
 	display: table;
 	width: 100%;
 	background: #262E30;
@@ -111,7 +112,7 @@ nav li {
 nav li a {
 	text-decoration: none;
 	color: #FFF;
-	padding: 5px 0;
+	padding: 1px 0;
 }
 
 nav li a:hover {
@@ -292,17 +293,23 @@ table.threads .posted {
 	opacity: 0.9;
 }
 
+.poster a {
+	text-decoration: none;
+}
+
 .poster .location {
 	font-size: 12px;
 	display: inline-block;
-	opacity: 0.3;
-	margin-left: 10px;
+}
+
+.poster span {
+	margin: 0 5px;
 }
 
 .thread .response {
-	margin-top: 50px;
-	border-top: 1px solid #2F3838;
-	padding-top: 30px ;
+    margin-top: 40px;
+    border-top: 1px solid #2F3838;
+    padding-top: 20px;
 }
 
 .thread .time {
@@ -311,7 +318,8 @@ table.threads .posted {
 }
 
 .thread .post {
-	padding-top: 50px;
+    padding-top: 20px;
+    color: #FFF;
 }
 
 h1 + .respond {
@@ -320,11 +328,16 @@ h1 + .respond {
     padding-top: 0;
 }
 
-.respond {
-    border-top: 1px solid rgb(58, 71, 74);
-    margin-top: 50px;
-    padding-top: 50px;
-    padding-bottom: 50px;
+.respond h2 {
+	margin-bottom: 40px;
+	margin-top: 20px;
+}
+
+.respond {    
+	border-top: 1px solid rgb(58, 71, 74);
+    margin-top: 40px;
+    padding-top: 20px;
+    padding-bottom: 40px;
 }
 
 /* USERS */
@@ -376,7 +389,7 @@ h1 + .respond {
 
 .profile .summary {
 	height: 120px;
-	margin-top: 30px;
+	margin-top: 20px;
 }
 
 /* GROUPS */
