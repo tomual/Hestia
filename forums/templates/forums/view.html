@@ -13,7 +13,7 @@
 		</div>
 		<div class="time">{{ thread.posted|timesince }} ago</div>
 		<!-- <div class="time">{{ thread.posted|date:"j/m/Y H:i A" }}</div> -->
-		<div class="post">{{ thread.message }}</div>
+		<div class="post">{{ thread.message|safe }}</div>
 	</div>
 	<div class="responses">
 		{% for response in thread.response_set.all %}
@@ -31,7 +31,7 @@
 	</div>
 	<div class="respond">
 	<h2>Respond</h2>
-		{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+		{% if error_message %}<strong>{{ error_message }}</strong>{% endif %}
 
 		<form action="/forums/{{ thread.id }}/respond/" method="post" novalidate>
 		{% csrf_token %}

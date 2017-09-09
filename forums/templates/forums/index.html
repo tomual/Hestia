@@ -22,13 +22,17 @@
                 <td class="thread">
                     <a href="/forums/{{ thread.id }}/">
                         <div class="title">{{ thread.title }}</div><br>
-                        <div class="preview">{{ thread.message|truncatechars:43 }}</div><br>
+                        <div class="preview">{{ thread.message|striptags|truncatechars:43 }}</div><br>
                         <div class="posted">{{ thread.posted|timesince }} ago by <b>{{ thread.thread_poster }}</b></div><br>
                     </a>
                 </td>
                 <td class="responses"><a href="/forums/{{ thread.id }}/">{{ thread.num_responses|default:'-' }}</a></td>
                 <td class="last-reply">
-                    <a href="/forums/{{ thread.id }}/#bottom">by <b>{{ thread.response_poster }}</b> &raquo;<br /><span class="text-small">{{ thread.last_touch|timesinceshort }} ago</span></a>
+                    {% if thread.response_poster %}
+                        <a href="/forums/{{ thread.id }}/#bottom">by <b>{{ thread.response_poster }}</b> &raquo;<br /><span class="text-small">{{ thread.last_touch|timesinceshort }} ago</span></a>
+                    {% else %}
+                        -
+                    {% endif %}
                 </td>
             </tr>
             {% endfor %}

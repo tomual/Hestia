@@ -48,7 +48,7 @@
 				<div class="response">
 					<a href="/forums/{{ recent_response.thread.id }}">
 						<div class="text-small"><b>{{ recent_response.thread.title }}</b></div>
-						<p>{{ recent_response.message|truncatechars:43 }}</p>
+						{{ recent_response.message|truncatechars:43 }}
 						<div class="text-small">{{ recent_response.posted|timesinceshort }} ago by {{ recent_response.poster.username }}</div>
 					</a>
 				</div>

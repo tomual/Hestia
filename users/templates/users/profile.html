@@ -14,9 +14,9 @@
 
     <div class="summary">
 		<div class="icon"><img src="/{{ profile_user.profile.icon }}"></div>
-	    <p><b>Location</b>: {{ profile_user.profile.location }}</p>
-	    <p><b>Joined</b>:  {{ profile_user.date_joined|date:"m/d/Y" }}</p>
-	    <p><b>Last Login</b>:  {{ profile_user.last_login|date:"m/d/Y h:iA" }}</p>
+	    <b>Location</b>: {{ profile_user.profile.location }}<br>
+	    <b>Joined</b>:  {{ profile_user.date_joined|date:"m/d/Y" }}<br>
+	    <b>Last Login</b>:  {{ profile_user.last_login|date:"m/d/Y h:iA" }}<br>
 	</div>
 
     <div class="description">

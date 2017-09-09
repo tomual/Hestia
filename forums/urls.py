@@ -9,4 +9,5 @@ urlpatterns = [
     # /thread/5/respond/
     url(r'^(?P<thread_id>[0-9]+)/respond/$', views.respond, name='respond'),
     url(r'^new$', views.new, name='new'),
+    url(r'^generate_posts$', views.generate_posts, name='generate_posts'),
 ]

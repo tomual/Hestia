@@ -17,6 +17,10 @@ img {
 	max-width: 100%;
 }
 
+p {
+    margin-bottom: 1.5em;
+}
+
 h1 {
 	color: #FFF;
 	font-family: 'Montserrat', sans-serif;
