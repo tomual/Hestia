@@ -1,9 +1,18 @@
+import random
+import requests
+import json
+import urllib.request
+import os.path
+
+from pathlib import Path
+from django.conf import settings
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import Permission, User
 from django.contrib import messages
 from django.core.exceptions import ValidationError
 from django.db import IntegrityError
+from django.http import HttpResponseRedirect, HttpResponse
 
 from users.models import Profile
 from .forms import UserForm, LoginForm, RegisterForm
@@ -83,3 +92,34 @@ def edit(request):
         }
         form = UserForm(initial=data)
         return render(request, 'users/edit.html', {'form':form})
+
+def generate_users(request):
+    number = 10
+
+    url = "https://randomuser.me/api/?nat=us,au,gb&results=" + str(number)
+    response = requests.get(url).text
+    random_users = json.loads(response)
+
+    for random_user in random_users['results']:
+
+        username = random_user['login']['password']
+        email = random_user['email']
+        password = random_user['login']['salt']
+        icon = "static/icons/" + username + ".jpg"
+        location = random_user['location']['city']
+
+        url = 'https://dog.ceo/api/breeds/image/random'
+        response = requests.get(url).text
+        image_url = json.loads(response)
+        image_url = image_url['message']
+        urllib.request.urlretrieve(image_url, icon)
+
+        user = User.objects.create_user(username, email, password)
+        profile = Profile.objects.create(user=user)
+        icon_file = Path( os.path.join(settings.BASE_DIR, 'static', 'icons', username + ".jpg"))
+        if icon_file.is_file():
+            profile.icon = icon
+        profile.location = location
+        profile.save()
+
+    return HttpResponse('Done')

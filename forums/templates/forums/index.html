@@ -42,4 +42,46 @@
         <p>No threads</p>
     {% endif %}
 
+    <div class="pagination">
+        <span class="step-links">
+            {% if threads.has_previous %}
+                <a href="?page={{ threads.previous_page_number }}">&laquo; Prev</a>
+            {% endif %}
+            {% if threads.paginator.num_pages > 6 %}
+                {% if threads.number < 3 %}
+                    <a href="?page=1" class="{% if threads.number == 1 %}active{% endif %}">1</a>
+                    <a href="?page=2" class="{% if threads.number == 2 %}active{% endif %}">2</a>
+                    <a href="?page=3" class="{% if threads.number == 3 %}active{% endif %}">3</a>
+                    <a href="">&hellip;</a>
+                    <a href="?page={{ threads.paginator.num_pages }}">{{ threads.paginator.num_pages }}</a>
+                {% else %}
+                    {% if threads.number > threads.paginator.num_pages|add:"-2" %}
+                        <a href="?page=1">1</a>
+                        <a href="">&hellip;</a>
+                        <a href="?page={{ threads.paginator.num_pages|add:"-2" }}" class="{% if threads.number == threads.paginator.num_pages|add:"-2" %}active{% endif %}">{{ threads.paginator.num_pages|add:"-2" }}</a>
+                        <a href="?page={{ threads.paginator.num_pages|add:"-1" }}" class="{% if threads.number == threads.paginator.num_pages|add:"-1" %}active{% endif %}">{{ threads.paginator.num_pages|add:"-1" }}</a>
+                        <a href="?page={{ threads.paginator.num_pages }}" class="{% if threads.number == threads.paginator.num_pages %}active{% endif %}">{{ threads.paginator.num_pages }}</a>
+                    {% else %}
+                        <a href="?page=1">1</a>
+                        <a href="">&hellip;</a>
+                        <a href="?page={{ threads.number|add:"-1" }}">{{ threads.number|add:"-1" }}</a>
+                        <a href="?page={{ threads.number }}" class="active">{{ threads.number }}</a>
+                        <a href="?page={{ threads.number|add:"1" }}">{{ threads.number|add:"1" }}</a>
+                        <a href="">&hellip;</a>
+                        <a href="?page={{ threads.paginator.num_pages }}">{{ threads.paginator.num_pages }}</a>
+                    {% endif %}
+                {% endif %}
+            {% else %}
+                {% if threads.paginator.num_pages > 1 %}
+                    {% for page in page_numbers %}
+                        <a href="?page={{ page }}" class="{% if page == threads.number %}active{% endif %}">{{ page }}</a>
+                    {% endfor %}
+                {% endif %}
+            {% endif %}
+            {% if threads.has_next %}
+                <a href="?page={{ threads.next_page_number }}">Next &raquo;</a>
+            {% endif %}
+        </span>
+    </div>
+
 {% endblock %}

@@ -11,15 +11,37 @@
 		        {% if responses.has_previous %}
 		            <a href="?page={{ responses.previous_page_number }}">&laquo; Prev</a>
 		        {% endif %}
-
-		        <!-- <span class="current">
-		            Page {{ responses.number }} of {{ responses.paginator.num_pages }}
-		        </span> -->
-
-				{% for pagina in page_numbers %}
-					<a href="?page={{ pagina }}">{{ pagina }}</a>
-				{% endfor %}
-
+		        {% if responses.paginator.num_pages > 6 %}
+		        	{% if responses.number < 3 %}
+				        <a href="?page=1" class="{% if responses.number == 1 %}active{% endif %}">1</a>
+				        <a href="?page=2" class="{% if responses.number == 2 %}active{% endif %}">2</a>
+				        <a href="?page=3" class="{% if responses.number == 3 %}active{% endif %}">3</a>
+				        <a href="">&hellip;</a>
+				        <a href="?page={{ responses.paginator.num_pages }}">{{ responses.paginator.num_pages }}</a>
+					{% else %}
+			        	{% if responses.number > responses.paginator.num_pages|add:"-2" %}
+					        <a href="?page=1">1</a>
+					        <a href="">&hellip;</a>
+					        <a href="?page={{ responses.paginator.num_pages|add:"-2" }}" class="{% if responses.number == responses.paginator.num_pages|add:"-2" %}active{% endif %}">{{ responses.paginator.num_pages|add:"-2" }}</a>
+					        <a href="?page={{ responses.paginator.num_pages|add:"-1" }}" class="{% if responses.number == responses.paginator.num_pages|add:"-1" %}active{% endif %}">{{ responses.paginator.num_pages|add:"-1" }}</a>
+					        <a href="?page={{ responses.paginator.num_pages }}" class="{% if responses.number == responses.paginator.num_pages %}active{% endif %}">{{ responses.paginator.num_pages }}</a>
+    					{% else %}
+					        <a href="?page=1">1</a>
+					        <a href="">&hellip;</a>
+					        <a href="?page={{ responses.number|add:"-1" }}">{{ responses.number|add:"-1" }}</a>
+					        <a href="?page={{ responses.number }}" class="active">{{ responses.number }}</a>
+					        <a href="?page={{ responses.number|add:"1" }}">{{ responses.number|add:"1" }}</a>
+					        <a href="">&hellip;</a>
+					        <a href="?page={{ responses.paginator.num_pages }}">{{ responses.paginator.num_pages }}</a>
+    					{% endif %}
+					{% endif %}
+				{% else %}
+		        	{% if responses.paginator.num_pages > 1 %}
+						{% for page in page_numbers %}
+							<a href="?page={{ page }}" class="{% if page == responses.number %}active{% endif %}">{{ page }}</a>
+						{% endfor %}
+					{% endif %}
+				{% endif %}
 		        {% if responses.has_next %}
 		            <a href="?page={{ responses.next_page_number }}">Next &raquo;</a>
 		        {% endif %}
@@ -52,19 +74,41 @@
 	</div>
 
 	<div class="pagination">
-	    <span class="step-links">
+		<span class="step-links">
 	        {% if responses.has_previous %}
 	            <a href="?page={{ responses.previous_page_number }}">&laquo; Prev</a>
 	        {% endif %}
-
-	        <!-- <span class="current">
-	            Page {{ responses.number }} of {{ responses.paginator.num_pages }}
-	        </span> -->
-
-			{% for pagina in page_numbers %}
-				<a href="?page={{ pagina }}">{{ pagina }}</a>
-			{% endfor %}
-
+	        {% if responses.paginator.num_pages > 6 %}
+	        	{% if responses.number < 3 %}
+			        <a href="?page=1" class="{% if responses.number == 1 %}active{% endif %}">1</a>
+			        <a href="?page=2" class="{% if responses.number == 2 %}active{% endif %}">2</a>
+			        <a href="?page=3" class="{% if responses.number == 3 %}active{% endif %}">3</a>
+			        <a href="">&hellip;</a>
+			        <a href="?page={{ responses.paginator.num_pages }}">{{ responses.paginator.num_pages }}</a>
+				{% else %}
+		        	{% if responses.number > responses.paginator.num_pages|add:"-2" %}
+				        <a href="?page=1">1</a>
+				        <a href="">&hellip;</a>
+				        <a href="?page={{ responses.paginator.num_pages|add:"-2" }}" class="{% if responses.number == responses.paginator.num_pages|add:"-2" %}active{% endif %}">{{ responses.paginator.num_pages|add:"-2" }}</a>
+				        <a href="?page={{ responses.paginator.num_pages|add:"-1" }}" class="{% if responses.number == responses.paginator.num_pages|add:"-1" %}active{% endif %}">{{ responses.paginator.num_pages|add:"-1" }}</a>
+				        <a href="?page={{ responses.paginator.num_pages }}" class="{% if responses.number == responses.paginator.num_pages %}active{% endif %}">{{ responses.paginator.num_pages }}</a>
+					{% else %}
+				        <a href="?page=1">1</a>
+				        <a href="">&hellip;</a>
+				        <a href="?page={{ responses.number|add:"-1" }}">{{ responses.number|add:"-1" }}</a>
+				        <a href="?page={{ responses.number }}" class="active">{{ responses.number }}</a>
+				        <a href="?page={{ responses.number|add:"1" }}">{{ responses.number|add:"1" }}</a>
+				        <a href="">&hellip;</a>
+				        <a href="?page={{ responses.paginator.num_pages }}">{{ responses.paginator.num_pages }}</a>
+					{% endif %}
+				{% endif %}
+			{% else %}
+	        	{% if responses.paginator.num_pages > 1 %}
+					{% for page in page_numbers %}
+						<a href="?page={{ page }}" class="{% if page == responses.number %}active{% endif %}">{{ page }}</a>
+					{% endfor %}
+				{% endif %}
+			{% endif %}
 	        {% if responses.has_next %}
 	            <a href="?page={{ responses.next_page_number }}">Next &raquo;</a>
 	        {% endif %}

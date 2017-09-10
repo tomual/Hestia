@@ -103,7 +103,23 @@ def index(request):
             thread['last_touch'] = datetime.strptime(thread['last_touch'], '%Y-%m-%d %H:%M:%S.%f')
         except ValueError:
             thread['last_touch'] = datetime.strptime(thread['last_touch'], '%Y-%m-%d %H:%M:%S')
-    return render(request, 'forums/index.html', {'threads':threads})    
+
+    threads_all = threads
+
+    paginator = Paginator(threads_all, 10)
+    page = request.GET.get('page')
+    try:
+        threads = paginator.page(page)
+    except PageNotAnInteger:
+        # If page is not an integer, deliver first page.
+        threads = paginator.page(1)
+    except EmptyPage:
+        # If page is out of range (e.g. 9999), deliver last page of results.
+        threads = paginator.page(paginator.num_pages)
+    form = ResponseForm()
+    page_numbers = range(1, paginator.num_pages + 1)
+
+    return render(request, 'forums/index.html', {'threads':threads, 'page_numbers':page_numbers})    
 
 def dictfetchall(cursor):
     desc = cursor.description
@@ -180,7 +196,8 @@ def randomreply():
     poster = random.choice(User.objects.all())
     posted = timezone.now()
 
-    thread = random.choice(Thread.objects.all())
+    # thread = Thread.objects.get(pk=106)
+    # thread = random.choice(Thread.objects.all())
 
     response = thread.response_set.create(message = message.text, posted = datetime.now(), poster = poster)
     response.save()
@@ -188,10 +205,10 @@ def randomreply():
     return response
 
 def generate_posts(request):
-    for x in range(0, 30):
+    for x in range(0, 1):
         randompost()
 
-    for x in range(0, 50):
+    for x in range(0, 1):
         randomreply()
 
-    return HttpResponse('hmm')
+    return HttpResponse('Done')

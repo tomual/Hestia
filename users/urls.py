@@ -9,4 +9,5 @@ urlpatterns = [
     url(r'^logout$', views.logout_view, name='logout'),
     url(r'^register$', views.register_view, name='register'),
     url(r'^edit$', views.edit, name='edit'),
+    url(r'^generate_users$', views.generate_users, name='generate_users'),
 ]
