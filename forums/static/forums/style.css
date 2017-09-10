@@ -155,6 +155,12 @@ nav li a:hover {
 	opacity: 1;
 }
 
+.pagination .step-links a {
+    background: #2B3133;
+    padding: 5px 10px;
+    text-decoration: none;
+    border: 1px solid rgba(144, 150, 150, 0.17);
+}
 
 input, textarea {
 	width: 100%;
@@ -326,6 +332,21 @@ table.threads .posted {
     color: #FFF;
 }
 
+.pagination {
+    border-top: 1px solid rgb(58, 71, 74);
+    margin-top: 40px;
+    padding-top: 20px;
+    text-align: right;
+}
+
+.pagination-top {	
+    border-top: 0;
+    padding-top: 0;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    margin-top: -60px;
+}
+
 h1 + .respond {
     border-top: 0;
     margin-top: 0;
@@ -338,8 +359,8 @@ h1 + .respond {
 }
 
 .respond {    
-	border-top: 1px solid rgb(58, 71, 74);
-    margin-top: 40px;
+    border-top: 1px solid rgb(58, 71, 74);
+    margin-top: 20px;
     padding-top: 20px;
     padding-bottom: 40px;
 }

@@ -9,6 +9,7 @@ from datetime import datetime
 from django.utils import timezone
 from django.db.models import Count, Max, Case, When, Value, DateField, IntegerField, DateTimeField
 from django.db import connection
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 from .models import Thread, Response
 from django.contrib.auth.models import User
@@ -16,8 +17,20 @@ from .forms import ThreadForm, ResponseForm
 
 def view(request, thread_id):
     thread = get_object_or_404(Thread, pk=thread_id)
+    responses_all = thread.response_set.all()
+    paginator = Paginator(responses_all, 15)
+    page = request.GET.get('page')
+    try:
+        responses = paginator.page(page)
+    except PageNotAnInteger:
+        # If page is not an integer, deliver first page.
+        responses = paginator.page(1)
+    except EmptyPage:
+        # If page is out of range (e.g. 9999), deliver last page of results.
+        responses = paginator.page(paginator.num_pages)
     form = ResponseForm()
-    return render(request, 'forums/view.html', {'thread':thread, 'form': form})
+    page_numbers = range(1, paginator.num_pages + 1)
+    return render(request, 'forums/view.html', {'thread':thread, 'responses': responses, 'form': form, 'page_numbers': page_numbers})
 
 def respond(request, thread_id):    
     thread = get_object_or_404(Thread, pk=thread_id)
@@ -169,16 +182,16 @@ def randomreply():
 
     thread = random.choice(Thread.objects.all())
 
-    response = thread.response_set.create(message = message, posted = datetime.now(), poster = poster)
+    response = thread.response_set.create(message = message.text, posted = datetime.now(), poster = poster)
     response.save()
 
     return response
 
 def generate_posts(request):
-    for x in range(0, 5):
+    for x in range(0, 30):
         randompost()
 
-    for x in range(0, 10):
+    for x in range(0, 50):
         randomreply()
 
     return HttpResponse('hmm')
