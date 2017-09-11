@@ -16,7 +16,7 @@
 		<a href="/groups/{{ group.id }}/join" class="button button-primary">Join Group</a>
 	{% endif %}
 
-	<div class="description">{{ group.description }}</div>
+	<div class="description">{{ group.description|safe }}</div>
     
     <div class="info">
     	Created {{ group.created }}<br>

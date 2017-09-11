@@ -13,13 +13,27 @@ from django.contrib import messages
 from django.core.exceptions import ValidationError
 from django.db import IntegrityError
 from django.http import HttpResponseRedirect, HttpResponse
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 from users.models import Profile
 from .forms import UserForm, LoginForm, RegisterForm
 
 def index(request):
-    users = User.objects.all()
-    return render(request, 'users/index.html', {'users':users})
+    users_all = User.objects.all()
+
+    paginator = Paginator(users_all, 10)
+    page = request.GET.get('page')
+    try:
+        users = paginator.page(page)
+    except PageNotAnInteger:
+        # If page is not an integer, deliver first page.
+        users = paginator.page(1)
+    except EmptyPage:
+        # If page is out of range (e.g. 9999), deliver last page of results.
+        users = paginator.page(paginator.num_pages)
+    page_numbers = range(1, paginator.num_pages + 1)
+
+    return render(request, 'users/index.html', {'users':users, 'page_numbers':page_numbers})
 
 def login_view(request):
     if request.user.is_authenticated:

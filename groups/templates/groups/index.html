@@ -11,10 +11,52 @@
         <div class="group">
 			<div class="icon"><a href="/groups/{{ group.id }}"><img src="/{{ group.icon }}"></a></div>
 			<div class="name"><a href="/groups/{{ group.id }}">{{ group.name }}</a></div>
-			<div class="description">{{ group.description }}</div>
+			<div class="description">{{ group.description|striptags|truncatechars:43 }}</div>
 			<div class="created">Formed {{ group.created|date:"m/d/Y" }}</div>
         </div>
     {% endfor %}
+    </div>
+
+    <div class="pagination">
+        <span class="step-links">
+            {% if groups.has_previous %}
+                <a href="?page={{ groups.previous_page_number }}">&laquo; Prev</a>
+            {% endif %}
+            {% if groups.paginator.num_pages > 6 %}
+                {% if groups.number < 3 %}
+                    <a href="?page=1" class="{% if groups.number == 1 %}active{% endif %}">1</a>
+                    <a href="?page=2" class="{% if groups.number == 2 %}active{% endif %}">2</a>
+                    <a href="?page=3" class="{% if groups.number == 3 %}active{% endif %}">3</a>
+                    <a href="">&hellip;</a>
+                    <a href="?page={{ groups.paginator.num_pages }}">{{ groups.paginator.num_pages }}</a>
+                {% else %}
+                    {% if groups.number > groups.paginator.num_pages|add:"-2" %}
+                        <a href="?page=1">1</a>
+                        <a href="">&hellip;</a>
+                        <a href="?page={{ groups.paginator.num_pages|add:"-2" }}" class="{% if groups.number == groups.paginator.num_pages|add:"-2" %}active{% endif %}">{{ groups.paginator.num_pages|add:"-2" }}</a>
+                        <a href="?page={{ groups.paginator.num_pages|add:"-1" }}" class="{% if groups.number == groups.paginator.num_pages|add:"-1" %}active{% endif %}">{{ groups.paginator.num_pages|add:"-1" }}</a>
+                        <a href="?page={{ groups.paginator.num_pages }}" class="{% if groups.number == groups.paginator.num_pages %}active{% endif %}">{{ groups.paginator.num_pages }}</a>
+                    {% else %}
+                        <a href="?page=1">1</a>
+                        <a href="">&hellip;</a>
+                        <a href="?page={{ groups.number|add:"-1" }}">{{ groups.number|add:"-1" }}</a>
+                        <a href="?page={{ groups.number }}" class="active">{{ groups.number }}</a>
+                        <a href="?page={{ groups.number|add:"1" }}">{{ groups.number|add:"1" }}</a>
+                        <a href="">&hellip;</a>
+                        <a href="?page={{ groups.paginator.num_pages }}">{{ groups.paginator.num_pages }}</a>
+                    {% endif %}
+                {% endif %}
+            {% else %}
+                {% if groups.paginator.num_pages > 1 %}
+                    {% for page in page_numbers %}
+                        <a href="?page={{ page }}" class="{% if page == groups.number %}active{% endif %}">{{ page }}</a>
+                    {% endfor %}
+                {% endif %}
+            {% endif %}
+            {% if groups.has_next %}
+                <a href="?page={{ groups.next_page_number }}">Next &raquo;</a>
+            {% endif %}
+        </span>
     </div>
 
 {% endblock %}

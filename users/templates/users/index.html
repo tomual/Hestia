@@ -14,5 +14,45 @@
         </div>
     {% endfor %}
     </div>
-
+    <div class="pagination">
+        <span class="step-links">
+            {% if users.has_previous %}
+                <a href="?page={{ users.previous_page_number }}">&laquo; Prev</a>
+            {% endif %}
+            {% if users.paginator.num_pages > 6 %}
+                {% if users.number < 3 %}
+                    <a href="?page=1" class="{% if users.number == 1 %}active{% endif %}">1</a>
+                    <a href="?page=2" class="{% if users.number == 2 %}active{% endif %}">2</a>
+                    <a href="?page=3" class="{% if users.number == 3 %}active{% endif %}">3</a>
+                    <a href="">&hellip;</a>
+                    <a href="?page={{ users.paginator.num_pages }}">{{ users.paginator.num_pages }}</a>
+                {% else %}
+                    {% if users.number > users.paginator.num_pages|add:"-2" %}
+                        <a href="?page=1">1</a>
+                        <a href="">&hellip;</a>
+                        <a href="?page={{ users.paginator.num_pages|add:"-2" }}" class="{% if users.number == users.paginator.num_pages|add:"-2" %}active{% endif %}">{{ users.paginator.num_pages|add:"-2" }}</a>
+                        <a href="?page={{ users.paginator.num_pages|add:"-1" }}" class="{% if users.number == users.paginator.num_pages|add:"-1" %}active{% endif %}">{{ users.paginator.num_pages|add:"-1" }}</a>
+                        <a href="?page={{ users.paginator.num_pages }}" class="{% if users.number == users.paginator.num_pages %}active{% endif %}">{{ users.paginator.num_pages }}</a>
+                    {% else %}
+                        <a href="?page=1">1</a>
+                        <a href="">&hellip;</a>
+                        <a href="?page={{ users.number|add:"-1" }}">{{ users.number|add:"-1" }}</a>
+                        <a href="?page={{ users.number }}" class="active">{{ users.number }}</a>
+                        <a href="?page={{ users.number|add:"1" }}">{{ users.number|add:"1" }}</a>
+                        <a href="">&hellip;</a>
+                        <a href="?page={{ users.paginator.num_pages }}">{{ users.paginator.num_pages }}</a>
+                    {% endif %}
+                {% endif %}
+            {% else %}
+                {% if users.paginator.num_pages > 1 %}
+                    {% for page in page_numbers %}
+                        <a href="?page={{ page }}" class="{% if page == users.number %}active{% endif %}">{{ page }}</a>
+                    {% endfor %}
+                {% endif %}
+            {% endif %}
+            {% if users.has_next %}
+                <a href="?page={{ users.next_page_number }}">Next &raquo;</a>
+            {% endif %}
+        </span>
+    </div>
 {% endblock %}

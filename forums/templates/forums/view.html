@@ -67,7 +67,7 @@
 				<div class="location">{{ response.poster.profile.location }}</div>
 			</div>			
 			<div class="time">{{ response.posted|timesince }} ago</div>
-			<div class="post">{{ response.message }}</div>
+			<div class="post">{{ response.message|safe }}</div>
 		</div>
 		{% endfor %}
 		<a name="bottom"></a>
