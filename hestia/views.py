@@ -3,22 +3,20 @@ from django.shortcuts import get_object_or_404, render
 from django.db.models import Count, Min
 
 from forums.models import Thread, Response
+from groups.models import Group
 from django.contrib.auth.models import User
 
 def home(request):
-	newest_response = Response.objects.order_by('-posted').first()
-	if newest_response:
-		newest_response_thread = Thread.objects.get(pk = newest_response.thread_id)
-	else:
-		newest_response_thread = None
+	newest_responses = Response.objects.order_by('-posted')[:5]
 	newest_user = User.objects.order_by('-date_joined').first()
-	newest_thread = Thread.objects.order_by('-posted').first()
+	newest_group = Group.objects.order_by('-created').first()
+	newest_threads = Thread.objects.order_by('-posted')[:5]
 
 	data = {
-		'newest_response_thread': newest_response_thread,
-		'newest_response': newest_response,
-		'newest_thread': newest_thread,
-		'newest_user': newest_user
+		'newest_responses': newest_responses,
+		'newest_threads': newest_threads,
+		'newest_user': newest_user,
+		'newest_group': newest_group
 	}
 
 	return render(request, 'home.html', data)
