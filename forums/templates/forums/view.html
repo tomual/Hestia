@@ -60,6 +60,8 @@
 	</div>
 	<div class="responses">
 		{% for response in responses %}
+
+		<a name="{{ response.id }}"></a>
 		<div class="response">
 			<div class="poster">
 				<div class="name"><a href="/users/profile/{{ response.poster }}">{{ response.poster }}</a></div>

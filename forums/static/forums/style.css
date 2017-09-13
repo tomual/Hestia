@@ -222,6 +222,10 @@ label {
 
 /* SIDEBAR */
 
+.recent-responses h2 {
+	margin-top: 0;
+}
+
 .recent-responses .response {
 	margin-bottom: 20px;
 	word-break: break-word;
@@ -231,12 +235,65 @@ label {
 	text-decoration: none;
 }
 
+.recent-responses a .title {
+	display: inline-block;
+	border-bottom: 1px solid transparent;
+}
+
+.recent-responses a:hover .title {
+	border-bottom: 1px solid #FFF;
+}
+
+.recent-responses .posted {
+	opacity: 0.6;
+}
+
 .recent-responses .text-small b {
 	color: #FFF;
 }
 
 /* HEADER */
 
+
+/* HOME */
+
+.newest-response a,
+.newest-thread a {
+	text-decoration: none;
+}
+
+.newest-response,
+.newest-thread {
+	margin-bottom: 20px;
+}
+
+.newest-response .message,
+.newest-thread .title {
+	color: #FFF;
+}
+
+.newest-response .posted,
+.newest-thread .posted {
+	opacity: 0.6;
+}
+
+.newest-response a .message,
+.newest-thread a .title {
+	border-bottom: 1px solid transparent;
+}
+
+.newest-response a:hover .message,
+.newest-thread a:hover .title {
+	border-bottom: 1px solid #FFF;
+}
+
+.newest-response img {
+    height: 40px;
+    width: 40px;
+    float: left;
+    border-radius: 3px;
+    margin-right: 10px;
+}
 
 /* FORUMS */
 
@@ -254,12 +311,43 @@ table.threads td div {
 	display: inline-block;
 }
 
+table.threads a:hover > .title {
+	border-bottom: 1px solid #FFF;
+}
+
 td.last-reply {
     width: 120px;
 }
 
 td.last-reply a, td.responses a {
     text-decoration: none;
+}
+
+td.last-reply b {
+	color: #FFF;
+}
+
+
+td.last-reply a b {
+	display: inline-block;
+	border-bottom: 1px solid transparent;
+}
+
+td.last-reply a:hover b {
+	border-bottom: 1px solid #FFF;
+}
+
+
+td.responses {
+	text-align: center;
+}
+
+table.threads thead td:nth-child(1) {
+    width: 650px;
+}
+
+table.threads thead td:nth-child(2) {
+	text-align: center;
 }
 
 table.threads thead td {
@@ -276,7 +364,6 @@ table.threads thead td {
 }
 
 table.threads thead {
-
     padding: 20px 0;
 }
 
@@ -291,6 +378,7 @@ table.threads td:first-child {
 table.threads .title {
 	color: #FFF;
 	font-weight: bold;
+	border-bottom: 1px solid transparent;
 }
 
 table.threads .posted {
@@ -462,6 +550,39 @@ h1 + .respond {
 	margin-top: 20px;
 	font-size: 11px;
 }
+
+/* ABOUT */
+
+table.about {
+}
+
+table.about td,
+table.post-ranking td  {
+	padding-bottom: 10px;
+	padding-right: 20px;
+}
+
+table.about td:nth-child(2),
+table.about td:nth-child(2) a {
+	color: #FFF;
+}
+
+table.about a,
+table.post-ranking a {
+	text-decoration: none;
+	font-weight: bold;
+}
+
+table.about a:hover,
+table.post-ranking a:hover {
+	border-bottom: 1px solid #FFF;
+}
+table.post-ranking a {
+	color: #FFF;
+	font-weight: bold;
+}
+
+
 
 /* FOOTER */
 

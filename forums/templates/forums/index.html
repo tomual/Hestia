@@ -22,7 +22,7 @@
                 <td class="thread">
                     <a href="/forums/{{ thread.id }}/">
                         <div class="title">{{ thread.title }}</div><br>
-                        <div class="preview">{{ thread.message|striptags|truncatechars:43 }}</div><br>
+                        <div class="preview">{{ thread.message|striptags|truncatechars:80 }}</div><br>
                         <div class="posted">{{ thread.posted|timesince }} ago by <b>{{ thread.thread_poster }}</b></div><br>
                     </a>
                 </td>

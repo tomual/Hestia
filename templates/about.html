@@ -4,7 +4,7 @@
 
 	<h1>{% block title %}About{% endblock %}</h1>
 
-	<table>
+	<table class="about">
 		<tr>
 			<td>Forum since</td>
 			<td>{{ first_posted.posted__min|date:"j M Y" }}</td>
@@ -32,9 +32,17 @@
 	</table>
 
 	<h2>Post Ranking</h2>
-	<table>
+	<table class="post-ranking">
+		<thead>
+			<tr>
+				<td>Rank</td>
+				<td>User</td>
+				<td>Posts</td>
+			</tr>
+		</thead>
     {% for poster in post_rankings %}
 		<tr>
+			<td>{{ forloop.counter }}</td>
 			<td><a href="/users/profile/{{ poster.username }}">{{ poster.username }}</a></td>
 			<td>{{ poster.num_replies }}</td>
 		</tr>

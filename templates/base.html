@@ -44,12 +44,13 @@
 		</div>
 		<div class="box sidebar">
 			<div class="recent-responses">
+				<h2>Latest Posts</h2>
 				{% for recent_response in request.recent_responses %}
 				<div class="response">
-					<a href="/forums/{{ recent_response.thread.id }}">
-						<div class="text-small"><b>{{ recent_response.thread.title }}</b></div>
-						{{ recent_response.message|truncatechars:43 }}
-						<div class="text-small">{{ recent_response.posted|timesinceshort }} ago by {{ recent_response.poster.username }}</div>
+					<a href="/forums/{{ recent_response.thread.id }}?page=last#{{ recent_response.id }}">
+						<div class="text-small title"><b>{{ recent_response.thread.title }}</b></div><br>
+						{{ recent_response.message|truncatechars:55 }}
+						<div class="text-small posted">{{ recent_response.posted|timesinceshort }} ago by {{ recent_response.poster.username }}</div>
 					</a>
 				</div>
 				{% endfor %}

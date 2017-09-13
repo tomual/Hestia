@@ -24,7 +24,10 @@ def view(request, thread_id):
         responses = paginator.page(page)
     except PageNotAnInteger:
         # If page is not an integer, deliver first page.
-        responses = paginator.page(1)
+        if(page == 'last'):
+            responses = paginator.page(paginator.num_pages)
+        else:
+            responses = paginator.page(1)
     except EmptyPage:
         # If page is out of range (e.g. 9999), deliver last page of results.
         responses = paginator.page(paginator.num_pages)

@@ -31,7 +31,7 @@ def about(request):
 
 	popular_thread = Thread.objects.annotate(num_replies=Count('response')).order_by('-num_replies').first()
 	top_poster = User.objects.annotate(num_replies=Count('response')).order_by('-num_replies').first()
-	post_rankings = User.objects.annotate(num_replies=Count('response')).order_by('-num_replies')[:5]
+	post_rankings = User.objects.annotate(num_replies=Count('response')).order_by('-num_replies')[:10]
 
 
 	data = {
