@@ -7,6 +7,17 @@
 	<title>{% block title %}{% endblock %} | Hestia</title>
 	<link rel="stylesheet" type="text/css" href="{% static 'forums/style.css' %}" />
 	<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700|Open+Sans|Lora" rel="stylesheet">
+	<script src="{% static 'js/tinymce/tinymce.min.js' %}"></script>
+	  <script>
+	  tinymce.init({
+	    selector: '.tinymce',
+	    skin: "custom",
+	    plugins: "lists, link",
+  		toolbar: 'bold italic underline | numlist bullist | link | removeformat',
+    menubar:false,
+    statusbar: false,
+	  });
+	  </script>
 
 </head>
 <body>
@@ -49,7 +60,7 @@
 				<div class="response">
 					<a href="/forums/{{ recent_response.thread.id }}?page=last#{{ recent_response.id }}">
 						<div class="text-small title"><b>{{ recent_response.thread.title }}</b></div><br>
-						{{ recent_response.message|truncatechars:55 }}
+						{{ recent_response.message|striptags|truncatechars:55 }}
 						<div class="text-small posted">{{ recent_response.posted|timesinceshort }} ago by {{ recent_response.poster.username }}</div>
 					</a>
 				</div>

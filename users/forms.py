@@ -6,7 +6,7 @@ class UserForm(forms.Form):
     username = forms.CharField(min_length=3)
     email = forms.EmailField(min_length=10)
     location = forms.CharField(required=False)
-    description = forms.CharField(required=False)
+    description = forms.CharField(widget=forms.Textarea(attrs={'class' : 'tinymce'}), required=False)
     icon = forms.ImageField(required=False)
 
 class RegisterForm(forms.Form):	

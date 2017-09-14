@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'django.contrib.staticfiles',
+    'django.contrib.staticfiles'
 ]
 
 MIDDLEWARE = [
@@ -131,3 +131,5 @@ AUTH_PROFILE_MODULE = 'users.UserProfile'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 MEDIA_URL = '/media/'
+
+ALLOWED_TAGS =  ['p', 'b', 'u', 'i', 'a', 'abbr', 'acronym', 'blockqote', 'code', 'em', 'i', 'li', 'ol', 'strong', 'ul']

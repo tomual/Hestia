@@ -1,6 +1,8 @@
 import random
 import requests
+import bleach
 
+from django.conf import settings
 from django.shortcuts import get_object_or_404, render
 from django.http import HttpResponseRedirect, HttpResponse
 from django.template import loader
@@ -40,9 +42,10 @@ def respond(request, thread_id):
     if request.method == "POST":
         form = ResponseForm(request.POST, request.FILES)
         if form.is_valid():
+            message = bleach.clean(form.cleaned_data['message'], settings.ALLOWED_TAGS, strip=True)
             if request.user.is_authenticated():
                 user = request.user
-            response = thread.response_set.create(message = request.POST.get('message'), posted = datetime.now(), poster = user)
+            response = thread.response_set.create(message=message, posted=datetime.now(), poster=user)
 
             response.save()
             return HttpResponseRedirect('/forums/' + thread_id)
@@ -58,7 +61,8 @@ def new(request):
         message = request.POST['message']
         posted = timezone.now()
         form = ThreadForm(request.POST, request.FILES)
-        if form.is_valid():            
+        if form.is_valid():
+            message = bleach.clean(form.cleaned_data['message'], settings.ALLOWED_TAGS, strip=True)
             if request.user.is_authenticated():
                 user = request.user
             thread = Thread(title=title, message=message, posted=posted, poster=user)

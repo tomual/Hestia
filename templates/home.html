@@ -10,7 +10,7 @@
 			<div class="newest-response">
 				<a href="/forums/{{ newest_response.thread.id }}?page=last#{{ newest_response.id }}">
 					<img src="/{{ newest_response.poster.profile.icon }}">
-					<span class="message">"{{ newest_response.message }}"</span><br>
+					<span class="message">"{{ newest_response.message|striptags }}"</span><br>
 					<span class="poster">by <b>{{ newest_response.poster }}</b> in <b>{{ newest_response.thread.title }}</b></span>
 					<span class="text-small posted">{{ newest_response.posted|timesince }} ago</span>
 				</a>

@@ -2,6 +2,7 @@ import random
 import requests
 import urllib.request
 import os.path
+import bleach
 
 from pathlib import Path
 from django.conf import settings
@@ -53,7 +54,7 @@ def new(request):
             if request.user.is_authenticated():
                 user = request.user
             name = form.cleaned_data['name']
-            description = form.cleaned_data['description']
+            description = bleach.clean(form.cleaned_data['description'], settings.ALLOWED_TAGS, strip=True)
             created = timezone.now()
             group = Group(name=name, description=description, created=created)
             if request.FILES.get('icon', False):
@@ -75,7 +76,7 @@ def edit(request, id):
         if form.is_valid():
             if request.FILES.get('icon', False):
                 group.icon = form.cleaned_data['icon']
-            group.description = form.cleaned_data['description']
+            group.description = bleach.clean(form.cleaned_data['description'], settings.ALLOWED_TAGS, strip=True)
             group.save()
         return render(request, 'groups/edit.html', {'group':group, 'form':form})
     else:
