@@ -22,6 +22,7 @@ from . import views
 urlpatterns = [
     url(r'^$', views.home, name='home'),
     url(r'^about$', views.about, name='about'),
+    url(r'^top$', views.top, name='top'),
     url(r'^forums/', include('forums.urls')),
     url(r'^groups/', include('groups.urls')),
     url(r'^users/', include('users.urls')),

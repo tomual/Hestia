@@ -2,8 +2,10 @@ from django.contrib.auth import views as auth_views
 from django.shortcuts import get_object_or_404, render
 from django.db.models import Count, Min
 
+from django.conf import settings
 from forums.models import Thread, Response
 from groups.models import Group
+from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 
 def home(request):
@@ -33,7 +35,6 @@ def about(request):
 	top_poster = User.objects.annotate(num_replies=Count('response')).order_by('-num_replies').first()
 	post_rankings = User.objects.annotate(num_replies=Count('response')).order_by('-num_replies')[:10]
 
-
 	data = {
 		'first_posted': first_posted,
 		'number_of_users': number_of_users,
@@ -44,3 +45,11 @@ def about(request):
 		'post_rankings': post_rankings
 	}
 	return render(request, 'about.html', data)
+
+def top(request):
+	if request.method == "POST":
+		password = settings.SITE_PASSWORD
+		entered = request.POST.get('password', '')
+		if entered == password:
+			return redirect('/users/register')
+	return render(request, 'top.html')

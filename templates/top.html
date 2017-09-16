@@ -3,28 +3,22 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Hestia</title>
-    <link rel="stylesheet" type="text/css" href="{% static 'forums/style.css' %}" />
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700|Open+Sans|Lora" rel="stylesheet">
+	<title>Hestia</title>
+	<link rel="stylesheet" type="text/css" href="{% static 'forums/style.css' %}" />
+	<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700|Open+Sans|Lora" rel="stylesheet">
 </head>
 <body class="top">
     <canvas id="canvas" width="1400" height="800">
     </canvas>
-            
+    		
     <div class="enter">
         <h1>Hestia</h1>
-        {% if messages %}
-            {% for message in messages %}
-                <div class="alert alert-{{ message.tags }}">
-                    {{ message|safe }}
-                </div>
-            {% endfor %}
-        {% endif %}
-        <form method="POST" novalidate>
+        <form method="post">
             {% csrf_token %}
-            {{ form }}
-            <button type="submit" class="button button-primary">Login</button>
+            <label>enter password</label>
+            <input type="password" name="password">
         </form>
+        <a href="/users/login">login</a>
     </div>
 
     </div>
