@@ -59,6 +59,8 @@ def logout_view(request):
     return redirect('/')
 
 def register_view(request):
+    if not request.session.get('has_password', False):
+        return redirect('/top')
     if request.method == "POST":
         form = RegisterForm(request.POST, request.FILES)
         if form.is_valid():

@@ -51,5 +51,6 @@ def top(request):
 		password = settings.SITE_PASSWORD
 		entered = request.POST.get('password', '')
 		if entered == password:
+			request.session['has_password'] = True
 			return redirect('/users/register')
 	return render(request, 'top.html')
