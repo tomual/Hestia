@@ -45,7 +45,7 @@ def respond(request, thread_id):
             message = bleach.clean(form.cleaned_data['message'], settings.ALLOWED_TAGS, strip=True)
             if request.user.is_authenticated():
                 user = request.user
-            response = thread.response_set.create(message=message, posted=datetime.now(), poster=user)
+            response = thread.response_set.create(message=message, posted=timezone.now(), poster=user)
 
             response.save()
             return HttpResponseRedirect('/forums/' + thread_id)
@@ -206,7 +206,7 @@ def randomreply():
     # thread = Thread.objects.get(pk=106)
     # thread = random.choice(Thread.objects.all())
 
-    response = thread.response_set.create(message = message.text, posted = datetime.now(), poster = poster)
+    response = thread.response_set.create(message = message.text, posted = timezone.now(), poster = poster)
     response.save()
 
     return response
