@@ -24,12 +24,10 @@ def home(request):
 	return render(request, 'home.html', data)
 
 def about(request):
-
 	first_posted = Thread.objects.all().aggregate(Min('posted'))
 	number_of_users = User.objects.count()
 	newest_user = User.objects.order_by('-date_joined').first()
 	number_of_posts = Thread.objects.count() + Response.objects.count()
-	# popular_thread = Thread.objects.annotate(responses=response_set.count()).order_by('-responses')
 
 	popular_thread = Thread.objects.annotate(num_replies=Count('response')).order_by('-num_replies').first()
 	top_poster = User.objects.annotate(num_replies=Count('response')).order_by('-num_replies').first()

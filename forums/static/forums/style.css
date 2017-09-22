@@ -264,7 +264,7 @@ label {
 
 .newest-response,
 .newest-thread {
-	margin-bottom: 20px;
+	margin-bottom: 10px;
 }
 
 .newest-response .message,
@@ -280,6 +280,7 @@ label {
 .newest-response a .message,
 .newest-thread a .title {
 	border-bottom: 1px solid transparent;
+    font-weight: bold;
 }
 
 .newest-response a:hover .message,
@@ -414,6 +415,10 @@ table.threads .posted {
     padding-top: 20px;
 }
 
+.thread .responses > div:last-child {
+    margin-bottom: 40px;
+}
+
 .thread .time {
 	font-size: 12px;
 	opacity: 0.7;
@@ -422,6 +427,7 @@ table.threads .posted {
 .thread .post {
     padding-top: 20px;
     color: #d9ddde;
+    width: 800px;
 }
 
 .thread .post ul {
@@ -451,9 +457,10 @@ table.threads .posted {
 
 .pagination {
     border-top: 1px solid rgb(58, 71, 74);
-    margin-top: 40px;
     padding-top: 20px;
     text-align: right;
+    margin-top: 40px;
+    margin-bottom: -20px;
 }
 
 .pagination-top {	
@@ -477,7 +484,7 @@ h1 + .respond {
 
 .respond {    
     border-top: 1px solid rgb(58, 71, 74);
-    margin-top: 20px;
+    margin-top: 40px;
     padding-top: 20px;
     padding-bottom: 40px;
 }

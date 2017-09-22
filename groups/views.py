@@ -23,10 +23,8 @@ def index(request):
     try:
         groups = paginator.page(page)
     except PageNotAnInteger:
-        # If page is not an integer, deliver first page.
         groups = paginator.page(1)
     except EmptyPage:
-        # If page is out of range (e.g. 9999), deliver last page of results.
         groups = paginator.page(paginator.num_pages)
     page_numbers = range(1, paginator.num_pages + 1)
 
@@ -99,41 +97,3 @@ def leave(request, id):
     except Membership.DoesNotExist:
         pass
     return HttpResponseRedirect('/groups/' + str(group.id))
-
-def generate_groups(request):
-    groups_start = [
-        'The',
-        'Only',
-        'Members of',
-        'People who like',
-        'Many',
-        'Group for'
-    ]
-
-    for x in range(0, 30):
-        url = "http://setgetgo.com/randomword/get.php"
-        word = requests.get(url).text.capitalize()
-
-        url = 'http://dinoipsum.herokuapp.com/api/?format=html&paragraphs=3&words=15'
-        description = requests.get(url).text
-
-        name = random.choice(groups_start) + ' ' + word
-        user = random.choice(User.objects.all())
-        created = timezone.now()
-        icon = "static/group_icons/" + name + ".jpg"
-
-        url = 'http://lorempixel.com/400/200/'
-        urllib.request.urlretrieve(url, icon)
-
-        group = Group(name=name, description=description, created=created)
-        group.save()
-        if group is not None:
-            Membership.objects.create(user=user,group=group, owner=True)
-
-        icon_file = Path( os.path.join(settings.BASE_DIR, 'static', 'group_icons', name + ".jpg"))
-        if icon_file.is_file():
-            group.icon = icon
-        group.save()
-
-
-    return HttpResponse('Done')

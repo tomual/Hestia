@@ -9,6 +9,13 @@ class UserForm(forms.Form):
     description = forms.CharField(widget=forms.Textarea(attrs={'class' : 'tinymce'}), required=False)
     icon = forms.ImageField(required=False)
 
+    def clean_icon(self):
+         icon = self.cleaned_data.get('icon',False)
+         if icon:
+             if icon._size > 2 * 1024 * 1024:
+                   raise forms.ValidationError("Icon file too large ( > 2mb )")
+             return icon
+
 class RegisterForm(forms.Form):	
     username = forms.RegexField(min_length=3, max_length=15, regex=r'^[a-zA-Z0-9]+$', error_messages={ 'invalid': _("Username may only contain letters and numbers.") })
     email = forms.EmailField(min_length=10)

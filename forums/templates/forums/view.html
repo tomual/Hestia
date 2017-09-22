@@ -75,6 +75,7 @@
 		<a name="bottom"></a>
 	</div>
 
+    {% if responses.paginator.num_pages > 1 %}
 	<div class="pagination">
 		<span class="step-links">
 	        {% if responses.has_previous %}
@@ -116,6 +117,7 @@
 	        {% endif %}
 	    </span>
 	</div>
+    {% endif %}
 
 	<div class="respond">
 	<h2>Respond</h2>

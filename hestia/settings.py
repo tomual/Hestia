@@ -129,10 +129,6 @@ STATICFILES_DIRS = [
 
 AUTH_PROFILE_MODULE = 'users.UserProfile'
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-
-MEDIA_URL = '/media/'
-
 ALLOWED_TAGS =  ['p', 'b', 'u', 'i', 'a', 'abbr', 'acronym', 'blockqote', 'code', 'em', 'i', 'li', 'ol', 'strong', 'ul']
 
 SITE_PASSWORD = "hmm"

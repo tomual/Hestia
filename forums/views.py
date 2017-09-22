@@ -25,13 +25,11 @@ def view(request, thread_id):
     try:
         responses = paginator.page(page)
     except PageNotAnInteger:
-        # If page is not an integer, deliver first page.
         if(page == 'last'):
             responses = paginator.page(paginator.num_pages)
         else:
             responses = paginator.page(1)
     except EmptyPage:
-        # If page is out of range (e.g. 9999), deliver last page of results.
         responses = paginator.page(paginator.num_pages)
     form = ResponseForm()
     page_numbers = range(1, paginator.num_pages + 1)
@@ -105,7 +103,6 @@ def index(request):
         threads = dictfetchall(cursor)
 
     for thread in threads:
-        #raise Exception({thread['last_touch'],})
         try:
             thread['last_touch'] = datetime.strptime(thread['last_touch'], '%Y-%m-%d %H:%M:%S.%f')
         except ValueError:
@@ -118,10 +115,8 @@ def index(request):
     try:
         threads = paginator.page(page)
     except PageNotAnInteger:
-        # If page is not an integer, deliver first page.
         threads = paginator.page(1)
     except EmptyPage:
-        # If page is out of range (e.g. 9999), deliver last page of results.
         threads = paginator.page(paginator.num_pages)
     form = ResponseForm()
     page_numbers = range(1, paginator.num_pages + 1)
@@ -134,88 +129,3 @@ def dictfetchall(cursor):
         dict(zip([col[0] for col in desc], row))
         for row in cursor.fetchall()
     ]
-
-def randompost():
-    bosses_start = [
-        'I can\'t beat',
-        'Can\'t seem to beat',
-        'Having difficulty with',
-        'Tips for',
-        'Tips against',
-        'How can I beat',
-        'How do you take down',
-        'How do you beat',
-    ]
-    bosses = [
-        'Asylum Demon',
-        'Bell Gargoyle',
-        'Gargoyles',
-        'Capra Demon',
-        'Ceaseless Discharge',
-        'Ceaseless',
-        'Centipede Demon',
-        'Chaos Witch Quelaag',
-        'Crossbreed Priscilla',
-        'Priscilla',
-        'Dark Sun Gwyndolin',
-        'Gwyndolin',
-        'Demon Firesage',
-        'Four Kings',
-        '4K',
-        'Gaping Dragon',
-        'Sif',
-        'Gwyn',
-        'Iron Golem',
-        'Moonlight Butterfly',
-        'Nito',
-        'Ornstein and Smough',
-        'O&S',
-        'Pinwheel',
-        'Seath the Scaleless',
-        'Seath',
-        'Stray Demon',
-        'Taurus Demon',
-        'Bed of Chaos',
-        'BoC',
-    ]
-    bosses_end = [
-        '?',
-        '!',
-        ', help!',
-        '??',
-        '!!',
-        '',
-    ]
-    url = 'http://dinoipsum.herokuapp.com/api/?format=html&paragraphs=3&words=15'
-    message = requests.get(url)
-    poster = random.choice(User.objects.all())
-    title = random.choice(bosses_start) + ' ' + random.choice(bosses) + random.choice(bosses_end)
-    posted = timezone.now()
-
-    thread = Thread(title=title, message=message.text, posted=posted, poster=poster)
-    thread.save()
-
-    return thread
-
-def randomreply():
-    url = 'http://numbersapi.com/random/trivia'
-    message = requests.get(url)
-    poster = random.choice(User.objects.all())
-    posted = timezone.now()
-
-    # thread = Thread.objects.get(pk=106)
-    # thread = random.choice(Thread.objects.all())
-
-    response = thread.response_set.create(message = message.text, posted = timezone.now(), poster = poster)
-    response.save()
-
-    return response
-
-def generate_posts(request):
-    for x in range(0, 1):
-        randompost()
-
-    for x in range(0, 1):
-        randomreply()
-
-    return HttpResponse('Done')

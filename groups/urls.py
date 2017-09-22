@@ -9,5 +9,4 @@ urlpatterns = [
     url(r'^(?P<id>[0-9]+)/edit$', views.edit, name='edit'),
     url(r'^(?P<id>[0-9]+)/join$', views.join, name='join'),
     url(r'^(?P<id>[0-9]+)/leave$', views.leave, name='leave'),
-    url(r'^generate_groups$', views.generate_groups, name='generate_groups'),
 ]

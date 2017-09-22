@@ -26,10 +26,8 @@ def index(request):
     try:
         users = paginator.page(page)
     except PageNotAnInteger:
-        # If page is not an integer, deliver first page.
         users = paginator.page(1)
     except EmptyPage:
-        # If page is out of range (e.g. 9999), deliver last page of results.
         users = paginator.page(paginator.num_pages)
     page_numbers = range(1, paginator.num_pages + 1)
 
@@ -108,34 +106,3 @@ def edit(request):
         }
         form = UserForm(initial=data)
         return render(request, 'users/edit.html', {'form':form})
-
-def generate_users(request):
-    number = 10
-
-    url = "https://randomuser.me/api/?nat=us,au,gb&results=" + str(number)
-    response = requests.get(url).text
-    random_users = json.loads(response)
-
-    for random_user in random_users['results']:
-
-        username = random_user['login']['password']
-        email = random_user['email']
-        password = random_user['login']['salt']
-        icon = "static/icons/" + username + ".jpg"
-        location = random_user['location']['city']
-
-        url = 'https://dog.ceo/api/breeds/image/random'
-        response = requests.get(url).text
-        image_url = json.loads(response)
-        image_url = image_url['message']
-        urllib.request.urlretrieve(image_url, icon)
-
-        user = User.objects.create_user(username, email, password)
-        profile = Profile.objects.create(user=user)
-        icon_file = Path( os.path.join(settings.BASE_DIR, 'static', 'icons', username + ".jpg"))
-        if icon_file.is_file():
-            profile.icon = icon
-        profile.location = location
-        profile.save()
-
-    return HttpResponse('Done')
