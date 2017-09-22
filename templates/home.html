@@ -2,57 +2,57 @@
 {% load timesinceshort %}
 {% block content %}
 
-	<h1>{% block title %}Home{% endblock %}</h1>
+    <h1>{% block title %}Home{% endblock %}</h1>
 
-	<h2>Recent Responses</h2>
+    <h2>Recent Responses</h2>
     {% if newest_responses %}
-    	{% for newest_response in newest_responses %}
-			<div class="newest-response">
-				<a href="/forums/{{ newest_response.thread.id }}?page=last#{{ newest_response.id }}">
-					<img src="/{{ newest_response.poster.profile.icon }}">
-					<span class="message">"{{ newest_response.message|striptags }}"</span><br>
-					<span class="poster">by <b>{{ newest_response.poster }}</b> in <b>{{ newest_response.thread.title }}</b></span>
-					<span class="text-small posted">{{ newest_response.posted|timesince }} ago</span>
-				</a>
-			</div>
-	    {% endfor %}
+        {% for newest_response in newest_responses %}
+            <div class="newest-response">
+                <a href="/forums/{{ newest_response.thread.id }}?page=last#{{ newest_response.id }}">
+                    <img src="/{{ newest_response.poster.profile.icon }}">
+                    <span class="message">"{{ newest_response.message|striptags }}"</span><br>
+                    <span class="poster">by <b>{{ newest_response.poster }}</b> in <b>{{ newest_response.thread.title }}</b></span>
+                    <span class="text-small posted">{{ newest_response.posted|timesince }} ago</span>
+                </a>
+            </div>
+        {% endfor %}
     {% endif %}
 
-	<h2>Newest Thread</h2>
+    <h2>Newest Thread</h2>
     {% if newest_threads %}
-    	{% for newest_thread in newest_threads %}
-			<div class="newest-thread">
-				<a href="/forums/{{ newest_response.thread.id }}?page=last#{{ newest_response.id }}">
-					<span class="title">{{ newest_thread.title }}</span>
-					<span class="poster">by <b>{{ newest_thread.poster }}</b></span>
-					<span class="text-small posted">{{ newest_thread.posted|timesince }} ago</span>
-				</a>
-			</div>
-	    {% endfor %}
+        {% for newest_thread in newest_threads %}
+            <div class="newest-thread">
+                <a href="/forums/{{ newest_response.thread.id }}?page=last#{{ newest_response.id }}">
+                    <span class="title">{{ newest_thread.title }}</span>
+                    <span class="poster">by <b>{{ newest_thread.poster }}</b></span>
+                    <span class="text-small posted">{{ newest_thread.posted|timesince }} ago</span>
+                </a>
+            </div>
+        {% endfor %}
     {% endif %}
 
-	<h2>Newest User</h2>
+    <h2>Newest User</h2>
     {% if newest_user %}
-	    <div class="users">
-	        <div class="user">
-				<div class="icon"><a href="/users/profile/{{ newest_user.username }}"><img src="/{{ newest_user.profile.icon }}"></a></div>
-				<div class="username"><a href="/users/profile/{{ newest_user.username }}">{{ newest_user.username }}</a></div>
-				<div class="location">{{ newest_user.profile.location }}</div>
-				<div class="joined">Joined {{ newest_user.date_joined|date:"m/d/Y" }}</div>
-	        </div>
-	    </div>
+        <div class="users">
+            <div class="user">
+                <div class="icon"><a href="/users/profile/{{ newest_user.username }}"><img src="/{{ newest_user.profile.icon }}"></a></div>
+                <div class="username"><a href="/users/profile/{{ newest_user.username }}">{{ newest_user.username }}</a></div>
+                <div class="location">{{ newest_user.profile.location }}</div>
+                <div class="joined">Joined {{ newest_user.date_joined|date:"m/d/Y" }}</div>
+            </div>
+        </div>
     {% endif %}
 
-	<h2>Newest Group</h2>
+    <h2>Newest Group</h2>
     {% if newest_group %}
         <div class="groups">
-	        <div class="group">
-				<div class="icon"><a href="/groups/{{ newest_group.id }}"><img src="/{{ newest_group.icon }}"></a></div>
-				<div class="name"><a href="/groups/{{ newest_group.id }}">{{ newest_group.name }}</a></div>
-				<div class="description">{{ newest_group.description|striptags|truncatechars:43 }}</div>
-				<div class="created">Formed {{ newest_group.created|date:"m/d/Y" }}</div>
-	        </div>
-	    </div>
+            <div class="group">
+                <div class="icon"><a href="/groups/{{ newest_group.id }}"><img src="/{{ newest_group.icon }}"></a></div>
+                <div class="name"><a href="/groups/{{ newest_group.id }}">{{ newest_group.name }}</a></div>
+                <div class="description">{{ newest_group.description|striptags|truncatechars:43 }}</div>
+                <div class="created">Formed {{ newest_group.created|date:"m/d/Y" }}</div>
+            </div>
+        </div>
     {% endif %}
 
 {% endblock %}

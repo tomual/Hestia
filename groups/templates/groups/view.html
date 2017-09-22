@@ -5,22 +5,22 @@
     <h1>{% block title %}{{ group.name }}{% endblock %}</h1>
 
 
-	<div class="icon"><img src="/{{ group.icon }}"></div>
+    <div class="icon"><img src="/{{ group.icon }}"></div>
 
 
-	{% if membership.owner %}
-		<a href="/groups/{{ group.id }}/edit" class="button button-primary">Edit Group</a>
-	{% endif %}
+    {% if membership.owner %}
+        <a href="/groups/{{ group.id }}/edit" class="button button-primary">Edit Group</a>
+    {% endif %}
 
-	{% if not membership %}
-		<a href="/groups/{{ group.id }}/join" class="button button-primary">Join Group</a>
-	{% endif %}
+    {% if not membership %}
+        <a href="/groups/{{ group.id }}/join" class="button button-primary">Join Group</a>
+    {% endif %}
 
-	<div class="description">{{ group.description|safe }}</div>
+    <div class="description">{{ group.description|safe }}</div>
     
     <div class="info">
-    	Created {{ group.created }}<br>
-    	Owned by {{ owner.user.username }}
+        Created {{ group.created }}<br>
+        Owned by {{ owner.user.username }}
     </div>
 
     <h2>Members</h2>
@@ -28,17 +28,17 @@
     <div class="users">
     {% for member in members %}
         <div class="user">
-			<div class="icon"><a href="/users/profile/{{ member.user.username }}"><img src="/{{ member.user.profile.icon }}"></a></div>
-			<div class="username"><a href="/users/profile/{{ member.user.username }}">{{ member.user.username }}</a></div>
-			<div class="location">{{ member.user.profile.location }}</div>
-			<div class="joined">Joined {{ member.user.date_joined|date:"m/d/Y" }}</div>
+            <div class="icon"><a href="/users/profile/{{ member.user.username }}"><img src="/{{ member.user.profile.icon }}"></a></div>
+            <div class="username"><a href="/users/profile/{{ member.user.username }}">{{ member.user.username }}</a></div>
+            <div class="location">{{ member.user.profile.location }}</div>
+            <div class="joined">Joined {{ member.user.date_joined|date:"m/d/Y" }}</div>
         </div>
     {% endfor %}
     </div>
 
-	{% if membership %}
-		<a href="/groups/{{ group.id }}/leave" class="text-small">Leave Group</a>
-	{% endif %}
+    {% if membership %}
+        <a href="/groups/{{ group.id }}/leave" class="text-small">Leave Group</a>
+    {% endif %}
 
 </div>
 {% endblock %}

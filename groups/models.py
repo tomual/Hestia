@@ -12,10 +12,10 @@ class Group(models.Model):
     members = models.ManyToManyField(User, through='Membership')
 
     def __str__(self):
-    	return self.name
+        return self.name
 
 class Membership(models.Model):
-	user = models.ForeignKey(User)
-	group = models.ForeignKey(Group)
-	joined = models.DateTimeField('date joined',default=datetime.now, blank=True)
-	owner = models.BooleanField(default=False)
+    user = models.ForeignKey(User)
+    group = models.ForeignKey(Group)
+    joined = models.DateTimeField('date joined',default=datetime.now, blank=True)
+    owner = models.BooleanField(default=False)

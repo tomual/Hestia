@@ -4,36 +4,36 @@
 
 <div class="thread">
 
-	<h1>{% block title %}Responding to: {{ thread.title }}{% endblock %}</h1>
-	<div class="respond">
-		{% if error_message %}<strong>{{ error_message }}</strong>{% endif %}
+    <h1>{% block title %}Responding to: {{ thread.title }}{% endblock %}</h1>
+    <div class="respond">
+        {% if error_message %}<strong>{{ error_message }}</strong>{% endif %}
 
-		<form action="/forums/{{ thread.id }}/respond/" method="post" novalidate>
-		{% csrf_token %}
-		{{ form }}
-		<button type="submit" class="button button-primary">Reply</button>
-		</form>
-	</div>
-	<div class="first">
-		<div class="poster">
-			<div class="name">{{ thread.poster }}</div>
-			<div class="location">{{ thread.poster.profile.location }}</div>
-		</div>
-		<div class="time">{{ thread.posted|timesince }} ago</div>
-		<!-- <div class="time">{{ thread.posted|date:"j/m/Y H:i A" }}</div> -->
-		<div class="post">{{ thread.message }}</div>
-	</div>
-	<div class="responses">
-		{% for response in thread.response_set.all %}
-		<div class="response">
-			<div class="poster">
-				<div class="name">{{ response.poster }}</div>
-				<div class="location">{{ response.poster.profile.location }}</div>
-			</div>			
-			<div class="time">{{ response.posted|timesince }} ago</div>
-			<div class="post">{{ response.message }}</div>
-		</div>
-		{% endfor %}
-	</div>
+        <form action="/forums/{{ thread.id }}/respond/" method="post" novalidate>
+        {% csrf_token %}
+        {{ form }}
+        <button type="submit" class="button button-primary">Reply</button>
+        </form>
+    </div>
+    <div class="first">
+        <div class="poster">
+            <div class="name">{{ thread.poster }}</div>
+            <div class="location">{{ thread.poster.profile.location }}</div>
+        </div>
+        <div class="time">{{ thread.posted|timesince }} ago</div>
+        <!-- <div class="time">{{ thread.posted|date:"j/m/Y H:i A" }}</div> -->
+        <div class="post">{{ thread.message }}</div>
+    </div>
+    <div class="responses">
+        {% for response in thread.response_set.all %}
+        <div class="response">
+            <div class="poster">
+                <div class="name">{{ response.poster }}</div>
+                <div class="location">{{ response.poster.profile.location }}</div>
+            </div>            
+            <div class="time">{{ response.posted|timesince }} ago</div>
+            <div class="post">{{ response.message }}</div>
+        </div>
+        {% endfor %}
+    </div>
 </div>
 {% endblock %}

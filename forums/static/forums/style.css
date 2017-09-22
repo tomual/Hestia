@@ -2,19 +2,19 @@
 * { margin:0; padding:0;}
 html, body { height: 100%; }
 body {
-	font-family: 'Open Sans', sans-serif;
-	background: #2F3838;
-	color: #909696;
-	font-size: 14px;
-	line-height: 1.5em;
+    font-family: 'Open Sans', sans-serif;
+    background: #2F3838;
+    color: #909696;
+    font-size: 14px;
+    line-height: 1.5em;
 }
 
 a {
-	color: #909696;
+    color: #909696;
 }
 
 img {
-	max-width: 100%;
+    max-width: 100%;
 }
 
 p {
@@ -22,153 +22,153 @@ p {
 }
 
 h1 {
-	color: #FFF;
-	font-family: 'Montserrat', sans-serif;
-	font-size: 22px;
-	text-transform: uppercase;
-	letter-spacing: 3px;
-	font-weight: normal;
-	margin-bottom: 40px;
+    color: #FFF;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 22px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-weight: normal;
+    margin-bottom: 40px;
 }
 
 h2 {
-	color: #FFF;
-	font-family: 'Montserrat', sans-serif;
-	font-size: 16px;
-	text-transform: uppercase;
-	letter-spacing: 3px;
-	font-weight: normal;
-	margin-bottom: 20px;
-	margin-top: 40px;
+    color: #FFF;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-weight: normal;
+    margin-bottom: 20px;
+    margin-top: 40px;
 }
 
 li {
-	list-style-type: none;
-	line-height: 1.7em;
+    list-style-type: none;
+    line-height: 1.7em;
 }
 
 .text-small {
-	font-size: 11px;
+    font-size: 11px;
 }
 
 .wrapper {
-	display: table;
-	width: 100%;
+    display: table;
+    width: 100%;
 }
 
 .header {
-	font-family: 'Montserrat', sans-serif;
-	display: table-row;
-	height: 1px;
-	background: #23282A;
+    font-family: 'Montserrat', sans-serif;
+    display: table-row;
+    height: 1px;
+    background: #23282A;
 }
 
 .header .title {
-	padding: 20px;
-	padding-left: 40px;
-	text-transform: uppercase;
-	letter-spacing: 8px;
-	font-weight: bold;
+    padding: 20px;
+    padding-left: 40px;
+    text-transform: uppercase;
+    letter-spacing: 8px;
+    font-weight: bold;
 }
 
 .main {
-	height: 100%;
-	min-height: 900px;
-	display: table;
-	width: 100%;
-	background: #262E30;
+    height: 100%;
+    min-height: 900px;
+    display: table;
+    width: 100%;
+    background: #262E30;
 }
 
 .main .sidebar {
-	width: 200px;
-	background: #22292B;
+    width: 200px;
+    background: #22292B;
 }
 
 .hero {
     height: 120px;
-	display: table;
-	width: 100%;
-	background: #2B3133;
+    display: table;
+    width: 100%;
+    background: #2B3133;
 }
 
 .hero .sidebar {
-	width: 200px;
-	background: rgba(34, 41, 43, 0.5);
+    width: 200px;
+    background: rgba(34, 41, 43, 0.5);
 }
 
 .box {
-	display: table-cell;
-	padding: 40px;
+    display: table-cell;
+    padding: 40px;
 }
 
 .content {
-	padding: 40px 80px;
+    padding: 40px 80px;
 }
 
 nav li {
-	font-size: 14px;
-	list-style-type: none;
-	line-height: 3em;
-	text-transform: uppercase;
-	letter-spacing: 1px;
+    font-size: 14px;
+    list-style-type: none;
+    line-height: 3em;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
 nav li a {
-	text-decoration: none;
-	color: #d9ddde;
-	padding: 1px 0;
+    text-decoration: none;
+    color: #d9ddde;
+    padding: 1px 0;
 }
 
 nav li a:hover {
-	border-bottom: 2px solid #8CFEE6;
+    border-bottom: 2px solid #8CFEE6;
 }
 
 .auth {
-	vertical-align: bottom;
-	font-size: 10px;
+    vertical-align: bottom;
+    font-size: 10px;
 }
 
 .auth span{
-	opacity: 0.7;
-	padding: 0 5px;
+    opacity: 0.7;
+    padding: 0 5px;
 }
 
 .auth .name {
-	font-size: 12px;
+    font-size: 12px;
 }
 
 .auth .name a {
-	font-weight: bold;
-	text-decoration: none;
+    font-weight: bold;
+    text-decoration: none;
 }
 
 .auth > a {
-	text-decoration: none;
-	text-transform: uppercase;
-	color: #d9ddde;
-	border-bottom: 1px solid #8CFEE6;
-	letter-spacing: 1px;
-	opacity: 0.7;
+    text-decoration: none;
+    text-transform: uppercase;
+    color: #d9ddde;
+    border-bottom: 1px solid #8CFEE6;
+    letter-spacing: 1px;
+    opacity: 0.7;
 }
 
 .auth a:hover {
-	opacity: 1;
+    opacity: 1;
 }
 
 .pagination .step-links a {
-	background: #2B3133;
+    background: #2B3133;
     padding: 5px 11px;
     text-decoration: none;
     margin-left: -4px;
 }
 
 .pagination .step-links a.active {
-	background: rgba(144, 150, 150, 0.17)
+    background: rgba(144, 150, 150, 0.17)
 }
 
 input, textarea {
-	width: 100%;
-	display: block;
+    width: 100%;
+    display: block;
     background: rgb(58, 71, 74);
     border: none;
     color: #d9ddde;
@@ -181,7 +181,7 @@ input, textarea {
 }
 
 .errorlist {
-	color: #D07522;
+    color: #D07522;
 }
 
 .alert-error {
@@ -193,7 +193,7 @@ input, textarea {
 }
 
 .errorlist + input, .errorlist + textarea {
-	border: 2px solid #D07522;
+    border: 2px solid #D07522;
 }
 
 .button-primary {
@@ -209,11 +209,11 @@ input, textarea {
 }
 
 a.button {
-	text-decoration: none;
+    text-decoration: none;
 }
 
 label {
-	opacity: 0.5;
+    opacity: 0.5;
     text-transform: uppercase;
     letter-spacing: 1px;
     font-size: 12px;
@@ -223,33 +223,33 @@ label {
 /* SIDEBAR */
 
 .recent-responses h2 {
-	margin-top: 0;
+    margin-top: 0;
 }
 
 .recent-responses .response {
-	margin-bottom: 20px;
-	word-break: break-word;
+    margin-bottom: 20px;
+    word-break: break-word;
 }
 
 .recent-responses a {
-	text-decoration: none;
+    text-decoration: none;
 }
 
 .recent-responses a .title {
-	display: inline-block;
-	border-bottom: 1px solid transparent;
+    display: inline-block;
+    border-bottom: 1px solid transparent;
 }
 
 .recent-responses a:hover .title {
-	border-bottom: 1px solid #d9ddde;
+    border-bottom: 1px solid #d9ddde;
 }
 
 .recent-responses .posted {
-	opacity: 0.6;
+    opacity: 0.6;
 }
 
 .recent-responses .text-small b {
-	color: #d9ddde;
+    color: #d9ddde;
 }
 
 /* HEADER */
@@ -259,33 +259,33 @@ label {
 
 .newest-response a,
 .newest-thread a {
-	text-decoration: none;
+    text-decoration: none;
 }
 
 .newest-response,
 .newest-thread {
-	margin-bottom: 10px;
+    margin-bottom: 10px;
 }
 
 .newest-response .message,
 .newest-thread .title {
-	color: #d9ddde;
+    color: #d9ddde;
 }
 
 .newest-response .posted,
 .newest-thread .posted {
-	opacity: 0.6;
+    opacity: 0.6;
 }
 
 .newest-response a .message,
 .newest-thread a .title {
-	border-bottom: 1px solid transparent;
+    border-bottom: 1px solid transparent;
     font-weight: bold;
 }
 
 .newest-response a:hover .message,
 .newest-thread a:hover .title {
-	border-bottom: 1px solid #d9ddde;
+    border-bottom: 1px solid #d9ddde;
 }
 
 .newest-response img {
@@ -304,16 +304,16 @@ label {
 }
 
 table.threads {
-	width: 100%;
-	margin-top: 20px;
+    width: 100%;
+    margin-top: 20px;
 }
 
 table.threads td div {
-	display: inline-block;
+    display: inline-block;
 }
 
 table.threads a:hover > .title {
-	border-bottom: 1px solid #d9ddde;
+    border-bottom: 1px solid #d9ddde;
 }
 
 td.last-reply {
@@ -325,22 +325,22 @@ td.last-reply a, td.responses a {
 }
 
 td.last-reply b {
-	color: #d9ddde;
+    color: #d9ddde;
 }
 
 
 td.last-reply a b {
-	display: inline-block;
-	border-bottom: 1px solid transparent;
+    display: inline-block;
+    border-bottom: 1px solid transparent;
 }
 
 td.last-reply a:hover b {
-	border-bottom: 1px solid #d9ddde;
+    border-bottom: 1px solid #d9ddde;
 }
 
 
 td.responses {
-	text-align: center;
+    text-align: center;
 }
 
 table.threads thead td:nth-child(1) {
@@ -348,7 +348,7 @@ table.threads thead td:nth-child(1) {
 }
 
 table.threads thead td:nth-child(2) {
-	text-align: center;
+    text-align: center;
 }
 
 table.threads thead td {
@@ -369,44 +369,44 @@ table.threads thead {
 }
 
 table.threads td {
-	padding: 10px 0;
+    padding: 10px 0;
 }
 
 table.threads td:first-child {
-	padding-top: 20px;
+    padding-top: 20px;
 }
 
 table.threads .title {
-	color: #d9ddde;
-	font-weight: bold;
-	border-bottom: 1px solid transparent;
+    color: #d9ddde;
+    font-weight: bold;
+    border-bottom: 1px solid transparent;
 }
 
 table.threads .posted {
-	font-size: 11px;
+    font-size: 11px;
 }
 
 .poster {
 }
 
 .poster .name {
-	display: inline-block;
-	font-weight: 600;
-	letter-spacing: 0.5px;
-	opacity: 0.9;
+    display: inline-block;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    opacity: 0.9;
 }
 
 .poster a {
-	text-decoration: none;
+    text-decoration: none;
 }
 
 .poster .location {
-	font-size: 12px;
-	display: inline-block;
+    font-size: 12px;
+    display: inline-block;
 }
 
 .poster span {
-	margin: 0 5px;
+    margin: 0 5px;
 }
 
 .thread .response {
@@ -420,8 +420,8 @@ table.threads .posted {
 }
 
 .thread .time {
-	font-size: 12px;
-	opacity: 0.7;
+    font-size: 12px;
+    opacity: 0.7;
 }
 
 .thread .post {
@@ -452,7 +452,7 @@ table.threads .posted {
 
 .thread .post ul li,
 .thread .post ol li {
-	list-style-type: inherit;
+    list-style-type: inherit;
 }
 
 .pagination {
@@ -463,7 +463,7 @@ table.threads .posted {
     margin-bottom: -20px;
 }
 
-.pagination-top {	
+.pagination-top {    
     border-top: 0;
     padding-top: 0;
     margin-bottom: 20px;
@@ -478,8 +478,8 @@ h1 + .respond {
 }
 
 .respond h2 {
-	margin-bottom: 40px;
-	margin-top: 20px;
+    margin-bottom: 40px;
+    margin-top: 20px;
 }
 
 .respond {    
@@ -492,95 +492,95 @@ h1 + .respond {
 /* USERS */
 
 .users .icon img {
-	width: 60px;
-	height: 60px;
-	float: left;
-	border-radius: 3px;
-	margin-right: 20px;
+    width: 60px;
+    height: 60px;
+    float: left;
+    border-radius: 3px;
+    margin-right: 20px;
 }
 
 .users .user {
-	display: block;
-	height: 80px;
-	width: 100%;
+    display: block;
+    height: 80px;
+    width: 100%;
 }
 
 .users .location {
-	height: 1em;
-	display: inline-block;
+    height: 1em;
+    display: inline-block;
 }
 
 .users .username a {
-	color: #d9ddde;
-	text-decoration: none;
-	font-weight: bold;
-	letter-spacing: 1px;
+    color: #d9ddde;
+    text-decoration: none;
+    font-weight: bold;
+    letter-spacing: 1px;
 }
 
 .users .username a:hover {
-	border-bottom: 1px solid #d9ddde;
+    border-bottom: 1px solid #d9ddde;
 }
 
 .users .joined {
-	font-size: 11px;
-	opacity: 0.7;
+    font-size: 11px;
+    opacity: 0.7;
 }
 
 /* PROFILE */
 
 .profile .icon img {
-	float: left;
-	width: 100px;
-	height: 100px;
-	margin-right: 20px;
-	border-radius: 3px;
+    float: left;
+    width: 100px;
+    height: 100px;
+    margin-right: 20px;
+    border-radius: 3px;
 }
 
 .profile .summary {
-	height: 120px;
-	margin-top: 20px;
+    height: 120px;
+    margin-top: 20px;
 }
 
 /* GROUPS */
 
 .groups .icon img {
-	width: 60px;
-	height: 60px;
-	float: left;
-	border-radius: 3px;
-	margin-right: 20px;
+    width: 60px;
+    height: 60px;
+    float: left;
+    border-radius: 3px;
+    margin-right: 20px;
 }
 
 .groups .group {
-	display: block;
-	height: 80px;
-	width: 100%;
+    display: block;
+    height: 80px;
+    width: 100%;
 }
 
 .groups .description {
-	height: 1em;
-	display: inline-block;
+    height: 1em;
+    display: inline-block;
 }
 
 .groups .name a {
-	color: #d9ddde;
-	text-decoration: none;
-	font-weight: bold;
-	letter-spacing: 1px;
+    color: #d9ddde;
+    text-decoration: none;
+    font-weight: bold;
+    letter-spacing: 1px;
 }
 
 .groups .name a:hover {
-	border-bottom: 1px solid #d9ddde;
+    border-bottom: 1px solid #d9ddde;
 }
 
 .groups .created {
-	font-size: 11px;
-	opacity: 0.7;
+    font-size: 11px;
+    opacity: 0.7;
 }
 
 .group .info {
-	margin-top: 20px;
-	font-size: 11px;
+    margin-top: 20px;
+    font-size: 11px;
 }
 
 /* ABOUT */
@@ -590,28 +590,28 @@ table.about {
 
 table.about td,
 table.post-ranking td  {
-	padding-bottom: 10px;
-	padding-right: 20px;
+    padding-bottom: 10px;
+    padding-right: 20px;
 }
 
 table.about td:nth-child(2),
 table.about td:nth-child(2) a {
-	color: #d9ddde;
+    color: #d9ddde;
 }
 
 table.about a,
 table.post-ranking a {
-	text-decoration: none;
-	font-weight: bold;
+    text-decoration: none;
+    font-weight: bold;
 }
 
 table.about a:hover,
 table.post-ranking a:hover {
-	border-bottom: 1px solid #d9ddde;
+    border-bottom: 1px solid #d9ddde;
 }
 table.post-ranking a {
-	color: #d9ddde;
-	font-weight: bold;
+    color: #d9ddde;
+    font-weight: bold;
 }
 
 
@@ -643,10 +643,10 @@ table.post-ranking a {
 }
 
 .top .enter {
-	z-index: 1;
-	width: 300px;
-	margin: auto;
-	margin-top: 100px;
+    z-index: 1;
+    width: 300px;
+    margin: auto;
+    margin-top: 100px;
 }
 
 .top .enter h1 {
@@ -675,7 +675,7 @@ table.post-ranking a {
 }
 
 .top canvas {
-	z-index: -1;
+    z-index: -1;
     display: block;
     position: absolute;
     left: 50%;

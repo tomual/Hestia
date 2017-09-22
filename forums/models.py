@@ -13,11 +13,11 @@ class Thread(models.Model):
     poster = models.ForeignKey(settings.AUTH_USER_MODEL, null=True)
 
     def __str__(self):
-    	return self.title
+        return self.title
 
     def was_posted_recently(self):
-    	now = timezone.now()
-    	return now - datetime.timedelta(days=1) <= self.posted <= now
+        now = timezone.now()
+        return now - datetime.timedelta(days=1) <= self.posted <= now
 
     was_posted_recently.posted  = True
     was_posted_recently.boolean = True
@@ -31,4 +31,4 @@ class Response(models.Model):
     posted = models.DateTimeField('date posted')
 
     def __str__(self):
-    	return self.message[:10]
+        return self.message[:10]

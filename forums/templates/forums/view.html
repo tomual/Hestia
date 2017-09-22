@@ -4,130 +4,130 @@
 
 <div class="thread">
 
-	<div class="first">
-		<h1>{% block title %}{{ thread.title }}{% endblock %}</h1>
-		<div class="pagination pagination-top">
-		    <span class="step-links">
-		        {% if responses.has_previous %}
-		            <a href="?page={{ responses.previous_page_number }}">&laquo; Prev</a>
-		        {% endif %}
-		        {% if responses.paginator.num_pages > 6 %}
-		        	{% if responses.number < 3 %}
-				        <a href="?page=1" class="{% if responses.number == 1 %}active{% endif %}">1</a>
-				        <a href="?page=2" class="{% if responses.number == 2 %}active{% endif %}">2</a>
-				        <a href="?page=3" class="{% if responses.number == 3 %}active{% endif %}">3</a>
-				        <a href="">&hellip;</a>
-				        <a href="?page={{ responses.paginator.num_pages }}">{{ responses.paginator.num_pages }}</a>
-					{% else %}
-			        	{% if responses.number > responses.paginator.num_pages|add:"-2" %}
-					        <a href="?page=1">1</a>
-					        <a href="">&hellip;</a>
-					        <a href="?page={{ responses.paginator.num_pages|add:"-2" }}" class="{% if responses.number == responses.paginator.num_pages|add:"-2" %}active{% endif %}">{{ responses.paginator.num_pages|add:"-2" }}</a>
-					        <a href="?page={{ responses.paginator.num_pages|add:"-1" }}" class="{% if responses.number == responses.paginator.num_pages|add:"-1" %}active{% endif %}">{{ responses.paginator.num_pages|add:"-1" }}</a>
-					        <a href="?page={{ responses.paginator.num_pages }}" class="{% if responses.number == responses.paginator.num_pages %}active{% endif %}">{{ responses.paginator.num_pages }}</a>
-    					{% else %}
-					        <a href="?page=1">1</a>
-					        <a href="">&hellip;</a>
-					        <a href="?page={{ responses.number|add:"-1" }}">{{ responses.number|add:"-1" }}</a>
-					        <a href="?page={{ responses.number }}" class="active">{{ responses.number }}</a>
-					        <a href="?page={{ responses.number|add:"1" }}">{{ responses.number|add:"1" }}</a>
-					        <a href="">&hellip;</a>
-					        <a href="?page={{ responses.paginator.num_pages }}">{{ responses.paginator.num_pages }}</a>
-    					{% endif %}
-					{% endif %}
-				{% else %}
-		        	{% if responses.paginator.num_pages > 1 %}
-						{% for page in page_numbers %}
-							<a href="?page={{ page }}" class="{% if page == responses.number %}active{% endif %}">{{ page }}</a>
-						{% endfor %}
-					{% endif %}
-				{% endif %}
-		        {% if responses.has_next %}
-		            <a href="?page={{ responses.next_page_number }}">Next &raquo;</a>
-		        {% endif %}
-		    </span>
-		</div>
+    <div class="first">
+        <h1>{% block title %}{{ thread.title }}{% endblock %}</h1>
+        <div class="pagination pagination-top">
+            <span class="step-links">
+                {% if responses.has_previous %}
+                    <a href="?page={{ responses.previous_page_number }}">&laquo; Prev</a>
+                {% endif %}
+                {% if responses.paginator.num_pages > 6 %}
+                    {% if responses.number < 3 %}
+                        <a href="?page=1" class="{% if responses.number == 1 %}active{% endif %}">1</a>
+                        <a href="?page=2" class="{% if responses.number == 2 %}active{% endif %}">2</a>
+                        <a href="?page=3" class="{% if responses.number == 3 %}active{% endif %}">3</a>
+                        <a href="">&hellip;</a>
+                        <a href="?page={{ responses.paginator.num_pages }}">{{ responses.paginator.num_pages }}</a>
+                    {% else %}
+                        {% if responses.number > responses.paginator.num_pages|add:"-2" %}
+                            <a href="?page=1">1</a>
+                            <a href="">&hellip;</a>
+                            <a href="?page={{ responses.paginator.num_pages|add:"-2" }}" class="{% if responses.number == responses.paginator.num_pages|add:"-2" %}active{% endif %}">{{ responses.paginator.num_pages|add:"-2" }}</a>
+                            <a href="?page={{ responses.paginator.num_pages|add:"-1" }}" class="{% if responses.number == responses.paginator.num_pages|add:"-1" %}active{% endif %}">{{ responses.paginator.num_pages|add:"-1" }}</a>
+                            <a href="?page={{ responses.paginator.num_pages }}" class="{% if responses.number == responses.paginator.num_pages %}active{% endif %}">{{ responses.paginator.num_pages }}</a>
+                        {% else %}
+                            <a href="?page=1">1</a>
+                            <a href="">&hellip;</a>
+                            <a href="?page={{ responses.number|add:"-1" }}">{{ responses.number|add:"-1" }}</a>
+                            <a href="?page={{ responses.number }}" class="active">{{ responses.number }}</a>
+                            <a href="?page={{ responses.number|add:"1" }}">{{ responses.number|add:"1" }}</a>
+                            <a href="">&hellip;</a>
+                            <a href="?page={{ responses.paginator.num_pages }}">{{ responses.paginator.num_pages }}</a>
+                        {% endif %}
+                    {% endif %}
+                {% else %}
+                    {% if responses.paginator.num_pages > 1 %}
+                        {% for page in page_numbers %}
+                            <a href="?page={{ page }}" class="{% if page == responses.number %}active{% endif %}">{{ page }}</a>
+                        {% endfor %}
+                    {% endif %}
+                {% endif %}
+                {% if responses.has_next %}
+                    <a href="?page={{ responses.next_page_number }}">Next &raquo;</a>
+                {% endif %}
+            </span>
+        </div>
         {% if responses.number == 1 %}
-			<div class="poster">
-				<div class="name"><a href="/users/profile/{{ thread.poster }}">{{ thread.poster }}</a></div>
-					<span>&middot;</span>
-				<div class="location">{{ thread.poster.profile.location }}</div>
-			</div>
-			<div class="time">{{ thread.posted|timesince }} ago</div>
-			<!-- <div class="time">{{ thread.posted|date:"j/m/Y H:i A" }}</div> -->
-			<div class="post">{{ thread.message|safe }}</div>
-		{% endif %}
-	</div>
-	<div class="responses">
-		{% for response in responses %}
+            <div class="poster">
+                <div class="name"><a href="/users/profile/{{ thread.poster }}">{{ thread.poster }}</a></div>
+                    <span>&middot;</span>
+                <div class="location">{{ thread.poster.profile.location }}</div>
+            </div>
+            <div class="time">{{ thread.posted|timesince }} ago</div>
+            <!-- <div class="time">{{ thread.posted|date:"j/m/Y H:i A" }}</div> -->
+            <div class="post">{{ thread.message|safe }}</div>
+        {% endif %}
+    </div>
+    <div class="responses">
+        {% for response in responses %}
 
-		<a name="{{ response.id }}"></a>
-		<div class="response">
-			<div class="poster">
-				<div class="name"><a href="/users/profile/{{ response.poster }}">{{ response.poster }}</a></div>
-				<span>&middot;</span>
-				<div class="location">{{ response.poster.profile.location }}</div>
-			</div>			
-			<div class="time">{{ response.posted|timesince }} ago</div>
-			<div class="post">{{ response.message|safe }}</div>
-		</div>
-		{% endfor %}
-		<a name="bottom"></a>
-	</div>
+        <a name="{{ response.id }}"></a>
+        <div class="response">
+            <div class="poster">
+                <div class="name"><a href="/users/profile/{{ response.poster }}">{{ response.poster }}</a></div>
+                <span>&middot;</span>
+                <div class="location">{{ response.poster.profile.location }}</div>
+            </div>            
+            <div class="time">{{ response.posted|timesince }} ago</div>
+            <div class="post">{{ response.message|safe }}</div>
+        </div>
+        {% endfor %}
+        <a name="bottom"></a>
+    </div>
 
     {% if responses.paginator.num_pages > 1 %}
-	<div class="pagination">
-		<span class="step-links">
-	        {% if responses.has_previous %}
-	            <a href="?page={{ responses.previous_page_number }}">&laquo; Prev</a>
-	        {% endif %}
-	        {% if responses.paginator.num_pages > 6 %}
-	        	{% if responses.number < 3 %}
-			        <a href="?page=1" class="{% if responses.number == 1 %}active{% endif %}">1</a>
-			        <a href="?page=2" class="{% if responses.number == 2 %}active{% endif %}">2</a>
-			        <a href="?page=3" class="{% if responses.number == 3 %}active{% endif %}">3</a>
-			        <a href="">&hellip;</a>
-			        <a href="?page={{ responses.paginator.num_pages }}">{{ responses.paginator.num_pages }}</a>
-				{% else %}
-		        	{% if responses.number > responses.paginator.num_pages|add:"-2" %}
-				        <a href="?page=1">1</a>
-				        <a href="">&hellip;</a>
-				        <a href="?page={{ responses.paginator.num_pages|add:"-2" }}" class="{% if responses.number == responses.paginator.num_pages|add:"-2" %}active{% endif %}">{{ responses.paginator.num_pages|add:"-2" }}</a>
-				        <a href="?page={{ responses.paginator.num_pages|add:"-1" }}" class="{% if responses.number == responses.paginator.num_pages|add:"-1" %}active{% endif %}">{{ responses.paginator.num_pages|add:"-1" }}</a>
-				        <a href="?page={{ responses.paginator.num_pages }}" class="{% if responses.number == responses.paginator.num_pages %}active{% endif %}">{{ responses.paginator.num_pages }}</a>
-					{% else %}
-				        <a href="?page=1">1</a>
-				        <a href="">&hellip;</a>
-				        <a href="?page={{ responses.number|add:"-1" }}">{{ responses.number|add:"-1" }}</a>
-				        <a href="?page={{ responses.number }}" class="active">{{ responses.number }}</a>
-				        <a href="?page={{ responses.number|add:"1" }}">{{ responses.number|add:"1" }}</a>
-				        <a href="">&hellip;</a>
-				        <a href="?page={{ responses.paginator.num_pages }}">{{ responses.paginator.num_pages }}</a>
-					{% endif %}
-				{% endif %}
-			{% else %}
-	        	{% if responses.paginator.num_pages > 1 %}
-					{% for page in page_numbers %}
-						<a href="?page={{ page }}" class="{% if page == responses.number %}active{% endif %}">{{ page }}</a>
-					{% endfor %}
-				{% endif %}
-			{% endif %}
-	        {% if responses.has_next %}
-	            <a href="?page={{ responses.next_page_number }}">Next &raquo;</a>
-	        {% endif %}
-	    </span>
-	</div>
+    <div class="pagination">
+        <span class="step-links">
+            {% if responses.has_previous %}
+                <a href="?page={{ responses.previous_page_number }}">&laquo; Prev</a>
+            {% endif %}
+            {% if responses.paginator.num_pages > 6 %}
+                {% if responses.number < 3 %}
+                    <a href="?page=1" class="{% if responses.number == 1 %}active{% endif %}">1</a>
+                    <a href="?page=2" class="{% if responses.number == 2 %}active{% endif %}">2</a>
+                    <a href="?page=3" class="{% if responses.number == 3 %}active{% endif %}">3</a>
+                    <a href="">&hellip;</a>
+                    <a href="?page={{ responses.paginator.num_pages }}">{{ responses.paginator.num_pages }}</a>
+                {% else %}
+                    {% if responses.number > responses.paginator.num_pages|add:"-2" %}
+                        <a href="?page=1">1</a>
+                        <a href="">&hellip;</a>
+                        <a href="?page={{ responses.paginator.num_pages|add:"-2" }}" class="{% if responses.number == responses.paginator.num_pages|add:"-2" %}active{% endif %}">{{ responses.paginator.num_pages|add:"-2" }}</a>
+                        <a href="?page={{ responses.paginator.num_pages|add:"-1" }}" class="{% if responses.number == responses.paginator.num_pages|add:"-1" %}active{% endif %}">{{ responses.paginator.num_pages|add:"-1" }}</a>
+                        <a href="?page={{ responses.paginator.num_pages }}" class="{% if responses.number == responses.paginator.num_pages %}active{% endif %}">{{ responses.paginator.num_pages }}</a>
+                    {% else %}
+                        <a href="?page=1">1</a>
+                        <a href="">&hellip;</a>
+                        <a href="?page={{ responses.number|add:"-1" }}">{{ responses.number|add:"-1" }}</a>
+                        <a href="?page={{ responses.number }}" class="active">{{ responses.number }}</a>
+                        <a href="?page={{ responses.number|add:"1" }}">{{ responses.number|add:"1" }}</a>
+                        <a href="">&hellip;</a>
+                        <a href="?page={{ responses.paginator.num_pages }}">{{ responses.paginator.num_pages }}</a>
+                    {% endif %}
+                {% endif %}
+            {% else %}
+                {% if responses.paginator.num_pages > 1 %}
+                    {% for page in page_numbers %}
+                        <a href="?page={{ page }}" class="{% if page == responses.number %}active{% endif %}">{{ page }}</a>
+                    {% endfor %}
+                {% endif %}
+            {% endif %}
+            {% if responses.has_next %}
+                <a href="?page={{ responses.next_page_number }}">Next &raquo;</a>
+            {% endif %}
+        </span>
+    </div>
     {% endif %}
 
-	<div class="respond">
-	<h2>Respond</h2>
-		{% if error_message %}<strong>{{ error_message }}</strong>{% endif %}
+    <div class="respond">
+    <h2>Respond</h2>
+        {% if error_message %}<strong>{{ error_message }}</strong>{% endif %}
 
-		<form action="/forums/{{ thread.id }}/respond/" method="post" novalidate>
-		{% csrf_token %}
-		{{ form }}
-		<button type="submit" class="button button-primary">Reply</button>
-		</form>
-	</div>
+        <form action="/forums/{{ thread.id }}/respond/" method="post" novalidate>
+        {% csrf_token %}
+        {{ form }}
+        <button type="submit" class="button button-primary">Reply</button>
+        </form>
+    </div>
 </div>
 {% endblock %}

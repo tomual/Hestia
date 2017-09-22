@@ -16,7 +16,7 @@ class UserForm(forms.Form):
                    raise forms.ValidationError("Icon file too large ( > 2mb )")
              return icon
 
-class RegisterForm(forms.Form):	
+class RegisterForm(forms.Form):    
     username = forms.RegexField(min_length=3, max_length=15, regex=r'^[a-zA-Z0-9]+$', error_messages={ 'invalid': _("Username may only contain letters and numbers.") })
     email = forms.EmailField(min_length=10)
     password = forms.CharField(min_length=6, widget=forms.PasswordInput)

@@ -6,21 +6,21 @@
 
     <h1>{% block title %}{{ profile_user.username }}{% endblock %}</h1>
 
-	{% if user.is_authenticated %}
-		{% if user.username == profile_user.username %}
-			<a href="/users/edit" class="button">Edit Profile</a>
-		{% endif %}
-	{% endif %}
+    {% if user.is_authenticated %}
+        {% if user.username == profile_user.username %}
+            <a href="/users/edit" class="button">Edit Profile</a>
+        {% endif %}
+    {% endif %}
 
     <div class="summary">
-		<div class="icon"><img src="/{{ profile_user.profile.icon }}"></div>
-	    <b>Location</b>: {{ profile_user.profile.location }}<br>
-	    <b>Joined</b>:  {{ profile_user.date_joined|date:"m/d/Y" }}<br>
-	    <b>Last Login</b>:  {{ profile_user.last_login|date:"m/d/Y h:iA" }}<br>
-	</div>
+        <div class="icon"><img src="/{{ profile_user.profile.icon }}"></div>
+        <b>Location</b>: {{ profile_user.profile.location }}<br>
+        <b>Joined</b>:  {{ profile_user.date_joined|date:"m/d/Y" }}<br>
+        <b>Last Login</b>:  {{ profile_user.last_login|date:"m/d/Y h:iA" }}<br>
+    </div>
 
     <div class="description">
-		{{ profile_user.profile.description|safe }}
+        {{ profile_user.profile.description|safe }}
     </div>
 
 </div>

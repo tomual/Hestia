@@ -10,7 +10,7 @@ def create_thread(title, message, days):
     return Thread.objects.create(title=title, message=message, posted=time)
 
 class ThreadModelTests(TestCase):
-	# No threads
+    # No threads
     def test_no_questions(self):
         response = self.client.get('/forums/')
         self.assertEqual(response.status_code, 200)
